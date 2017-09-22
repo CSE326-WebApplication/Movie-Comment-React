@@ -5,3 +5,5 @@
 
 /* Default Page */
 export DefaultPage from './_DefaultPage/DefaultPage';
+
+export MainPage from './MainPage/MainPage.react';

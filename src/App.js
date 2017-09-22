@@ -6,7 +6,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Own Modules
-import { DefaultPage } from './Pages/';
+import { MainPage } from './Pages/';
 
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
       <MuiThemeProvider>
         <Router history={browserHistory}>
           <Route path="/">
-            <IndexRoute component={DefaultPage}/>
+            <IndexRoute component={MainPage}/>
           </Route>
         </Router>
       </MuiThemeProvider>
