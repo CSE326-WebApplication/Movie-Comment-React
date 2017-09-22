@@ -14,7 +14,7 @@ const propTypes = {};
 const mapStateToProps = state => {
 	return {
 		value: state.movieReducer.text,
-		movie: state.movieReducer.movie,
+		boxoffices: state.movieReducer.boxoffices,
 	};
 };
 
@@ -24,13 +24,24 @@ class MainPage extends Component {
 	}
 
 	componentDidMount() {
-		this.props.dispatch(MovieActionCreator.getMovie());
+		this.props.dispatch(MovieActionCreator.getBoxoffices());
 	}
 	render() {
+		const { boxoffices } = this.props;
 		return (
 			<div>
 				<Navigation/>
 				<MainSlider/>
+				<ol>
+					{
+						boxoffices && boxoffices.boxOfficeResult.dailyBoxOfficeList.map((item, i) => {
+							console.log(item);
+							return (
+								<li key={i}>{item.movieNm}</li>
+							);
+						})
+					}
+				</ol>
 			</div>
 		);
 	}
