@@ -3,16 +3,29 @@
 // If you want to make other page, Copy and Refactor this page.
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { MainSlider, Navigation } from '../../Components';
+
+import * as MovieActionCreator from '../../ActionCreators/MovieActionCreator';
 
 const defaultProps = {};
 const propTypes = {};
 
-class DefaultPage extends Component {
+const mapStateToProps = state => {
+	return {
+		value: state.movieReducer.text,
+		movie: state.movieReducer.movie,
+	};
+};
+
+class MainPage extends Component {
 	constructor(props) {
 		super(props);
 	}
 
+	componentDidMount() {
+		this.props.dispatch(MovieActionCreator.getMovie());
+	}
 	render() {
 		return (
 			<div>
@@ -23,7 +36,7 @@ class DefaultPage extends Component {
 	}
 }
 
-DefaultPage.defaultProps = defaultProps;
-DefaultPage.propTypes = propTypes;
+MainPage.defaultProps = defaultProps;
+MainPage.propTypes = propTypes;
 
-export default DefaultPage;
+export default MainPage = connect(mapStateToProps)(MainPage);
