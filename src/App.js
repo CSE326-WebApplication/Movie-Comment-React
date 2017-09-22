@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 // React Router
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-// Material UI Provider for React
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Own Modules
 import { MainPage } from './Pages/';
@@ -17,13 +15,11 @@ class App extends Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <Router history={browserHistory}>
-          <Route path="/">
-            <IndexRoute component={MainPage}/>
-          </Route>
-        </Router>
-      </MuiThemeProvider>
+      <Router history={browserHistory}>
+        <Route path="/">
+          <IndexRoute component={MainPage}/>
+        </Route>
+      </Router>
     );
   }
 }
