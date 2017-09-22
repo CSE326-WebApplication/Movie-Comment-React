@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { MainSlider, Navigation } from '../../Components';
 
 import * as MovieActionCreator from '../../ActionCreators/MovieActionCreator';
+import * as NaverMovieActionCreator from '../../ActionCreators/NaverMovieActionCreator';
 
 const defaultProps = {};
 const propTypes = {};
@@ -25,7 +26,9 @@ class MainPage extends Component {
 
 	componentDidMount() {
 		this.props.dispatch(MovieActionCreator.getBoxoffices());
+		this.props.dispatch(NaverMovieActionCreator.getMovieInformation('it'));
 	}
+	
 	render() {
 		const { boxoffices } = this.props;
 		return (
