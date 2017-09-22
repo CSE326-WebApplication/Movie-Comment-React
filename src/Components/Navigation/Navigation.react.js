@@ -13,8 +13,19 @@ class Navigation extends Component {
 
 	render() {
 		return (
-			<div>
-        This is Default Component
+			<div className="navigation clear">
+				<div className="navigation__left">
+					<div className="navigation__left__logo">
+						MovieComment
+					</div>
+				</div>
+				<div className="navigation__right">
+					<ul className="navigation__right__items">
+						<li className="navigation__right__items__item">Menu</li>
+						<li className="navigation__right__items__item">Menu</li>
+						<li className="navigation__right__items__item">Menu</li>
+					</ul>
+				</div>
 			</div>
 		);
 	}
