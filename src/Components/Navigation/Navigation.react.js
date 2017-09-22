@@ -21,9 +21,8 @@ class Navigation extends Component {
 				</div>
 				<div className="navigation__right">
 					<ul className="navigation__right__items">
-						<li className="navigation__right__items__item">Menu</li>
-						<li className="navigation__right__items__item">Menu</li>
-						<li className="navigation__right__items__item">Menu</li>
+						<li className="navigation__right__items__item">SignUp</li>
+						<li className="navigation__right__items__item">SignIn</li>
 					</ul>
 				</div>
 			</div>
