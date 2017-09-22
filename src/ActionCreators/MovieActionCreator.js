@@ -12,9 +12,7 @@ export const getBoxoffices = () => {
 };
 
 const getBoxoffices_request = () => {
-	const key = '5281b2b7c2077e72f60db74d3773b6c0';
-	const targetDate = '20170921';
-	const url = `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${key}&targetDt=${targetDate}`;
+	const url = 'api/openMovie';
 	return WebRequestUtil.getJson(url, getBoxoffices_response);
 };
 
