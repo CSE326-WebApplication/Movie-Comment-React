@@ -3,19 +3,19 @@
 * Email: nayunhwan.dev@mgail.com
 */
 
-import { GET_MOVIE } from '../ActionCreators/MovieActionCreator';
+import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { combineReducers } from 'redux';
 
 const initialState = {
 	text: 'initial State',
-	movie: {},
+	boxoffices: null,
 };
 
 const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case GET_MOVIE:
+		case GET_BOXOFFICES:
 			return Object.assign({}, state, {
-				movie: action.movie,
+				boxoffices: action.boxoffices,
 			});
 		default:
 			return state;
