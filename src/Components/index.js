@@ -4,3 +4,4 @@
 */
 
 export DefaultComponent from './_DefaultComponent/DefaultComponent';
+export Navigation from './_Navigation/Navigation.react';
