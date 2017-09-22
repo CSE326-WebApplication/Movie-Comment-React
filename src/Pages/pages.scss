@@ -1,0 +1,22 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+* {
+  margin: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  background: $white-color;
+}
+
+.clear {
+  &:after {
+    display: block;
+    clear: both;
+    content: " ";
+  }
+}
