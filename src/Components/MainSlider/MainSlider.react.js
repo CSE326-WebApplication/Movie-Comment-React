@@ -13,8 +13,11 @@ class MainSlider extends Component {
 
 	render() {
 		return (
-			<div className="MainSlider">
-				<img src={require('../../Static/Images/Slider01.jpg')} />
+			<div className="mainSlider">
+				<img
+					className="mainSlider__slideImage"
+					src={require('../../Static/Images/Slider01.jpg')}
+				/>
 			</div>
 		);
 	}
