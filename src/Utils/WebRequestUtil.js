@@ -4,11 +4,11 @@
 */
 
 import fetch from 'isomorphic-fetch';
-// import { ServerEndPoint } from '../Configs/Server';
+import { ServerEndPoint } from '../Configs/Server';
 
-export const getJson = (url, responseActionCreator) => {
+export const getJson = (url, responseActionCreator, headers) => {
 	return dispatch => {
-		fetch(url)
+		fetch(ServerEndPoint + url, headers)
 		.then(response => response.json())
 		.then(json => dispatch(responseActionCreator(json)));
 	};
