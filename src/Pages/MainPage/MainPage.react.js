@@ -3,7 +3,7 @@
 // If you want to make other page, Copy and Refactor this page.
 
 import React, { Component } from 'react';
-import { Navigation } from '../../Components';
+import { MainSlider, Navigation } from '../../Components';
 
 const defaultProps = {};
 const propTypes = {};
@@ -17,6 +17,7 @@ class DefaultPage extends Component {
 		return (
 			<div>
 				<Navigation/>
+				<MainSlider/>
 			</div>
 		);
 	}
