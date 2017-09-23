@@ -13,17 +13,22 @@ class Navigation extends Component {
 
 	render() {
 		return (
-			<div className="navigation clear">
-				<div className="navigation__left">
-					<div className="navigation__left__logo">
-						MovieComment
+			<div className="navigation">
+				<div className="clear">
+					<div className="navigation__left">
+						<div className="navigation__left__logo">
+							MovieComment
+						</div>
+					</div>
+					<div className="navigation__right">
+						<ul className="navigation__right__items">
+							<li className="navigation__right__items__item">SignUp</li>
+							<li className="navigation__right__items__item">SignIn</li>
+						</ul>
 					</div>
 				</div>
-				<div className="navigation__right">
-					<ul className="navigation__right__items">
-						<li className="navigation__right__items__item">SignUp</li>
-						<li className="navigation__right__items__item">SignIn</li>
-					</ul>
+				<div className="navigation__body">
+					{this.props.children}
 				</div>
 			</div>
 		);

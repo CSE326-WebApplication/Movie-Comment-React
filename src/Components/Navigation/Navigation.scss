@@ -6,7 +6,7 @@
 .navigation {
   background: $main-color;
   color: white;
-  padding: 1rem;
+  padding: 3rem;
   font-weight: bold;
 
   &__left {
@@ -37,4 +37,21 @@
     }
   }
 
+  &__body {
+    margin-top: 5rem;
+    text-align: center;
+
+    &__search {
+      width: 70%;
+      margin-top: 2rem;
+
+      .input {
+        width: 100%;
+      }
+
+      .results {
+        width: 100% !important;
+      }
+    }
+  }
 }
