@@ -19,6 +19,6 @@ const getMovieInformation_request = (query) => {
 const getMovieInformation_response = (json) => {
 	return {
 		type: GET_MOVIE_INFORMATION,
-		infomation: json,
+		searchedMovies: json,
 	};
 };

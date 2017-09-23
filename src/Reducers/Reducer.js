@@ -4,11 +4,13 @@
 */
 
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
+import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
 import { combineReducers } from 'redux';
 
 const initialState = {
 	text: 'initial State',
 	boxoffices: null,
+	searchedMovies: null,
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -16,6 +18,10 @@ const movieReducer = (state = initialState, action) => {
 		case GET_BOXOFFICES:
 			return Object.assign({}, state, {
 				boxoffices: action.boxoffices,
+			});
+		case GET_MOVIE_INFORMATION:
+			return Object.assign({}, state, {
+				searchedMovies: action.searchedMovies.items,
 			});
 		default:
 			return state;
