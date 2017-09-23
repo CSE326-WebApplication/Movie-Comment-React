@@ -1,0 +1,34 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+.searchResultRenderer {
+  text-align: left;
+
+  &__left {
+    float: left;
+    margin-right: 1rem;
+  }
+
+  &__right {
+    float: left;
+
+    &__title {
+      font-size: 1.2rem;
+
+      b {
+        color: red;
+      }
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__subtitle {
+      margin-top: .25rem;
+      font-size: 1rem;
+    }
+  }
+}
