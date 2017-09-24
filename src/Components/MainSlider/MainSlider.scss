@@ -4,8 +4,74 @@
 */
 
 .mainSlider {
-
-  &__slideImage {
+  &__bg {
+    position: absolute;
     width: 100%;
+    min-height: 550px;
+    filter: grayscale(100%) brightness(120%) contrast(130%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      min-height: 550px;
+      z-index: -1;
+      display: block;
+      background-image: radial-gradient(at 10% 30%, #1e272c 0%, #2e3749 100%);
+      will-change: opacity;
+      filter: opacity(90%);
+      transition: 1s;
+    }
+  }
+
+
+  &__body {
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 3rem;
+
+    &__content {
+      display: flex;
+      flex-direction: row;
+      width: 70%;
+
+      &__left {
+        width: 300px;
+
+        &__poster {
+          max-width: 300px;
+        }
+      }
+
+      &__right {
+        display: flex;
+        flex-direction: column;
+        padding-left: 3rem;
+        width: calc(100% - 300px);
+
+        &__title {
+          font-size: 3rem !important;
+          color: $white-color !important;
+
+          &__subtitle {
+            font-size: 1.5rem !important;
+            color: $color-gray12 !important;
+          }
+        }
+
+        &__overview {
+          font-size: 1.2rem;
+          color: $white-color;
+          margin: 0;
+        }
+      }
+    }
   }
 }

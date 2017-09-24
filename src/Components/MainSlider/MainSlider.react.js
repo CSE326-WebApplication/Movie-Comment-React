@@ -2,8 +2,11 @@
 // If you want to make other Component, Copy and Refactor this Component.
 
 import React, { Component } from 'react';
+import { Header } from 'semantic-ui-react';
 
-const defaultProps = {};
+const defaultProps = {
+	backdrop: 'Ytv7P13rbwQ3mLpCAY8lBTqI5s.jpg',
+};
 const propTypes = {};
 
 class MainSlider extends Component {
@@ -12,12 +15,49 @@ class MainSlider extends Component {
 	}
 
 	render() {
+		const { item } = this.props;
+		if (!item) {
+			return (
+				<div className="mainSlider"/>
+			);
+		}
 		return (
 			<div className="mainSlider">
-				<img
-					className="mainSlider__slideImage"
-					src={require('../../Static/Images/Slider01.jpg')}
+				<div className="mainSlider__bg"
+					style={{
+						backgroundImage:
+						item && `url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${item.backdrop_path})`,
+					}}
 				/>
+				<div className="mainSlider__body">
+					<div className="mainSlider__body__content">
+						<div className="mainSlider__body__content__left">
+							<img
+								className="mainSlider__body__content__left__poster"
+								src={
+									item && `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${item.poster_path}`
+								}
+							/>
+						</div>
+						<div className="mainSlider__body__content__right">
+							<Header
+								as='h1'
+								className="mainSlider__body__content__right__title"
+								size='huge'
+							>
+								{item.title.trim()}
+								<Header.Subheader
+									className="mainSlider__body__content__right__title__subtitle"
+								>
+									{item.original_title.trim()} | {item.release_date.slice(0,4)}
+								</Header.Subheader>
+							</Header>
+							<div className="mainSlider__body__content__right__overview">
+								{item.overview.trim()}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
