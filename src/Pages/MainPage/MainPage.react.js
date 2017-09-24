@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search, Loader } from 'semantic-ui-react'
+import { Search, Loader } from 'semantic-ui-react';
 
 import { MainSlider, Navigation, SearchResultRenderer } from '../../Components';
 
@@ -30,7 +30,7 @@ class MainPage extends Component {
 
 		this.state = {
 			selected: null,
-		}
+		};
 	}
 
 	componentDidMount() {
