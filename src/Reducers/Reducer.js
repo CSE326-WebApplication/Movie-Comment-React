@@ -5,12 +5,14 @@
 
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
+import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
 import { combineReducers } from 'redux';
 
 const initialState = {
 	text: 'initial State',
 	boxoffices: null,
 	searchedMovies: null,
+	searchedList: null,
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -22,6 +24,10 @@ const movieReducer = (state = initialState, action) => {
 		case GET_MOVIE_INFORMATION:
 			return Object.assign({}, state, {
 				searchedMovies: action.searchedMovies.items,
+			});
+		case GET_SEARCHED_LIST:
+			return Object.assign({}, state, {
+				searchedList: action.searchedList.results,
 			});
 		default:
 			return state;
