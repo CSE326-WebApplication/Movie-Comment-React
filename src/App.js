@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 // Own Modules
-import { MainPage } from './Pages/';
+import { LoginPage, MainPage } from './Pages/';
 
 
 class App extends Component {
@@ -18,6 +18,9 @@ class App extends Component {
       <Router history={browserHistory}>
         <Route path="/">
           <IndexRoute component={MainPage}/>
+        </Route>
+        <Route path="/login">
+          <IndexRoute component={LoginPage}/>
         </Route>
       </Router>
     );
