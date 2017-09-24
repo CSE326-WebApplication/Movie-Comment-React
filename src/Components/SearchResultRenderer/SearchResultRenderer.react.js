@@ -2,6 +2,7 @@
 // If you want to make other Component, Copy and Refactor this Component.
 
 import React, { Component, PropTypes } from 'react';
+import { Header } from 'semantic-ui-react';
 
 const defaultProps = {
 	item: null
@@ -20,23 +21,24 @@ class DefaultComponent extends Component {
 		return (
 			<div className="searchResultRenderer clear">
 				<div className="searchResultRenderer__left">
-					<img src={item.image}/>
+					<img
+						className="searchResultRenderer__left__poster"
+						src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${item.poster_path}`}
+					/>
 				</div>
 				<div className="searchResultRenderer__right">
-					<h1
+					<Header as='h1'
 						className="searchResultRenderer__right__title"
-						dangerouslySetInnerHTML={{ __html: item.title.trim() }}
-					/>
-					<h2 className="searchResultRenderer__right__subtitle"
-						dangerouslySetInnerHTML={{ __html: item.subtitle.trim() }}
+					>
+						{item.title.trim()}
+						<Header.Subheader>
+							{item.original_title.trim()}
+						</Header.Subheader>
+					</Header>
+				<p className="searchResultRenderer__right__overview"
+						dangerouslySetInnerHTML={{ __html: item.overview.trim() }}
 					/>
 					<br/>
-					<h2 className="searchResultRenderer__right__subtitle"
-						dangerouslySetInnerHTML={{ __html: item.director.trim() }}
-					/>
-					<h2 className="searchResultRenderer__right__subtitle"
-						dangerouslySetInnerHTML={{ __html: item.actor.trim() }}
-					/>
 				</div>
 			</div>
 		);

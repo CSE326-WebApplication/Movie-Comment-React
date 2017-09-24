@@ -4,31 +4,40 @@
 */
 
 .searchResultRenderer {
+  display: flex;
   text-align: left;
+  cursor: pointer;
 
   &__left {
-    float: left;
-    margin-right: 1rem;
+    display: inline-block;
+    width: 20%;
+
+    &__poster {
+      width: 80%;
+    }
   }
 
   &__right {
-    float: left;
+    display: inline-block;
+    width: 80%;
 
     &__title {
-      font-size: 1.2rem;
-
-      b {
-        color: red;
-      }
-    }
-
-    &__title {
+      font-size: 2rem;
+      color: $blue-color;
       margin: 0;
     }
 
-    &__subtitle {
-      margin-top: .25rem;
-      font-size: 1rem;
+    &__overview {
+      color: $color-gray8;
+      text-align: left;
+      margin-top: .5rem;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      max-height: 7.2em;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      white-space: normal;
+      overflow: hidden;
     }
   }
 }
