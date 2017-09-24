@@ -28,6 +28,7 @@ class Navigation extends Component {
 					</div>
 				</div>
 				<div className="navigation__body">
+					<h1 className="navigation__body__title">당신의 영화를 검색하세요</h1>
 					{this.props.children}
 				</div>
 			</div>
