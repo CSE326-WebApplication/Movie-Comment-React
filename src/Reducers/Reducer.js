@@ -3,6 +3,7 @@
 * Email: nayunhwan.dev@mgail.com
 */
 
+import { LOGIN } from '../ActionCreators/LoginActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
 import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
@@ -13,10 +14,15 @@ const initialState = {
 	boxoffices: null,
 	searchedMovies: null,
 	searchedList: null,
+	loginResult: null,
 };
 
 const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case LOGIN:
+			return Object.assign({}, state, {
+				loginResult: action.loginResult,
+			});
 		case GET_BOXOFFICES:
 			return Object.assign({}, state, {
 				boxoffices: action.boxoffices,

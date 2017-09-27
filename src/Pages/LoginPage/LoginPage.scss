@@ -2,3 +2,19 @@
 * Author: @nayunhwan (github.com/nayunhwan)
 * Email: nayunhwan.dev@mgail.com
 */
+
+.loginPage {
+
+  &__body {
+    background: $color-blue-white;
+    padding: 2rem 0;
+
+    &__form {
+      width: 50%;
+
+      &__footer {
+        margin: 1rem 0;
+      }
+    }
+  }
+}
