@@ -4,6 +4,7 @@
 */
 
 import { LOGIN } from '../ActionCreators/LoginActionCreator';
+import { SIGNUP } from '../ActionCreators/SignupActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
 import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
@@ -15,6 +16,7 @@ const initialState = {
 	searchedMovies: null,
 	searchedList: null,
 	loginResult: null,
+	signupResult: null,
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -22,6 +24,10 @@ const movieReducer = (state = initialState, action) => {
 		case LOGIN:
 			return Object.assign({}, state, {
 				loginResult: action.loginResult,
+			});
+		case SIGNUP:
+			return Object.assign({}, state, {
+				signupResult: action.signupResult,
 			});
 		case GET_BOXOFFICES:
 			return Object.assign({}, state, {
