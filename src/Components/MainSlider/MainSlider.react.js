@@ -25,8 +25,7 @@ class MainSlider extends Component {
 			<div className="mainSlider">
 				<div className="mainSlider__bg"
 					style={{
-						backgroundImage:
-						item && `url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${item.backdrop_path})`,
+						backgroundImage: `url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${item.backdrop_path})`,
 					}}
 				/>
 				<div className="mainSlider__body">
@@ -34,9 +33,7 @@ class MainSlider extends Component {
 						<div className="mainSlider__body__content__left">
 							<img
 								className="mainSlider__body__content__left__poster"
-								src={
-									item && `https://image.tmdb.org/t/p/w300_and_h450_bestv2/${item.poster_path}`
-								}
+								src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${item.poster_path}`}
 							/>
 						</div>
 						<div className="mainSlider__body__content__right">
@@ -49,7 +46,7 @@ class MainSlider extends Component {
 								<Header.Subheader
 									className="mainSlider__body__content__right__title__subtitle"
 								>
-									{item.original_title.trim()} | {item.release_date.slice(0,4)}
+									{item.original_title.trim()} | {item.release_date.slice(0, 4)}
 								</Header.Subheader>
 							</Header>
 							<div className="mainSlider__body__content__right__overview">
