@@ -9,22 +9,22 @@ import { LoginPage, MainPage } from './Pages/';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+	constructor(props) {
+		super(props);
+	}
 
-  render() {
-    return (
-      <Router history={browserHistory}>
-        <Route path="/">
-          <IndexRoute component={MainPage}/>
-        </Route>
-        <Route path="/login">
-          <IndexRoute component={LoginPage}/>
-        </Route>
-      </Router>
-    );
-  }
+	render() {
+		return (
+			<Router history={browserHistory}>
+				<Route path="/">
+					<IndexRoute component={MainPage}/>
+				</Route>
+				<Route path="/signin">
+					<IndexRoute component={LoginPage}/>
+				</Route>
+			</Router>
+		);
+	}
 }
 
 export default App;
