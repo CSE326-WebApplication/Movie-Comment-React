@@ -17,7 +17,8 @@ const propTypes = {};
 
 const mapStateToProps = state => {
 	return {
-		value: state.movieReducer.text,
+		isLogin: state.movieReducer.isLogin,
+		user: state.movieReducer.user,
 		boxoffices: state.movieReducer.boxoffices,
 		searchedMovies: state.movieReducer.searchedMovies,
 		searchedList: state.movieReducer.searchedList,
@@ -54,7 +55,9 @@ class MainPage extends Component {
 	}
 
 	handleResultSelect(e, { result }) {
+		console.log(result);
 		this.setState({
+			movieId: result.id,
 			value: result.title,
 			backdrop: result.backdrop_path,
 			selected: result,
@@ -75,10 +78,10 @@ class MainPage extends Component {
 	}
 
 	render() {
-		const { boxoffices, searchedList } = this.props;
+		const { boxoffices, searchedList, isLogin, user } = this.props;
 		return (
 			<div className="mainPage">
-				<Navigation>
+				<Navigation isLogin={isLogin} user={user}>
 					<Search
 						className="navigation__body__search"
 						icon="search"
