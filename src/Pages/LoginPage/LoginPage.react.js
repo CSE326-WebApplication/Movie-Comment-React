@@ -3,13 +3,14 @@
 // If you want to make other page, Copy and Refactor this page.
 
 import React, { Component } from 'react';
+import history from '../../history';
 
 import { connect } from 'react-redux';
 
 import { Button, Input } from 'semantic-ui-react';
-import { MainSlider, Navigation, SearchResultRenderer } from '../../Components';
+import { Navigation } from '../../Components';
 
-import * as LoginActionCreator from '../../ActionCreators/LoginActionCreator';
+import * as SigninActionCreator from '../../ActionCreators/SigninActionCreator';
 import * as SignupActionCreator from '../../ActionCreators/SignupActionCreator';
 
 const defaultProps = {};
@@ -17,7 +18,7 @@ const propTypes = {};
 
 const mapStateToProps = state => {
 	return {
-		value: state.movieReducer.text,
+		isLogin: state.movieReducer.isLogin,
 		boxoffices: state.movieReducer.boxoffices,
 		searchedMovies: state.movieReducer.searchedMovies,
 		searchedList: state.movieReducer.searchedList,
@@ -29,9 +30,16 @@ class LoginPage extends Component {
 		super(props);
 	}
 
+	componentWillMount() {
+		const token = localStorage.getItem('token');
+		if (token) {
+			history.replace('/');
+		}
+	}
+
 	handleLoginButtonClick() {
 		const { id, pw } = this.state;
-		this.props.dispatch(LoginActionCreator.login(id, pw));
+		this.props.dispatch(SigninActionCreator.signin(id, pw));
 	}
 
 	handleSignupButtonClick() {
@@ -40,7 +48,6 @@ class LoginPage extends Component {
 	}
 
 	handleInputChange(event, data, type) {
-		console.log(data.value);
 		if (type === 'ID') {
 			this.setState({
 				id: data.value,
@@ -53,6 +60,7 @@ class LoginPage extends Component {
 	}
 
 	render() {
+
 		return (
 			<div className="loginPage">
 				<Navigation/>
@@ -92,9 +100,7 @@ class LoginPage extends Component {
 							</Button>
 						</div>
 					</div>
-
 				</div>
-
 			</div>
 		);
 	}
