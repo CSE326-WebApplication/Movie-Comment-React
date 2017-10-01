@@ -3,6 +3,7 @@
 * Email: nayunhwan.dev@mgail.com
 */
 
+import { AUTHENTICATION, LOGOUT } from '../ActionCreators/AuthActionCreator';
 import { SIGNIN } from '../ActionCreators/SigninActionCreator';
 import { SIGNUP } from '../ActionCreators/SignupActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
@@ -12,6 +13,8 @@ import { combineReducers } from 'redux';
 
 const initialState = {
 	text: 'initial State',
+	isLogin: false,
+	user: null,
 	boxoffices: null,
 	searchedMovies: null,
 	searchedList: null,
@@ -25,6 +28,10 @@ const movieReducer = (state = initialState, action) => {
 			return Object.assign({}, state, {
 				isLogin: action.authResult.result,
 				user: action.authResult.data,
+			});
+		case LOGOUT:
+			return Object.assign({}, state, {
+				isLogin: false,
 			});
 		case SIGNIN:
 			localStorage.setItem('token', action.signinResult.token);
