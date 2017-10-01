@@ -13,7 +13,7 @@ export const signup = (userId, password) => {
 };
 
 const signup_request = (userId, password) => {
-	const url = 'api/Signup/';
+	const url = 'auth/Signup/';
 	const body = {
 		username: 'test',
 		userId: userId,
