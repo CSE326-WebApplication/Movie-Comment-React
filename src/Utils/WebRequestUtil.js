@@ -14,11 +14,12 @@ export const getJson = (url, responseActionCreator, headers) => {
 	};
 };
 
-export const postJson = (url, responseActionCreator, body) => {
+export const postJson = (url, responseActionCreator, headers, body) => {
 	return dispatch => {
 		fetch(ServerEndPoint + url, {
 			method: 'POST',
 			headers: {
+				...headers,
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},

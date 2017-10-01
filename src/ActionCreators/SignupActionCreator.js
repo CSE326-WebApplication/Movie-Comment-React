@@ -19,7 +19,7 @@ const signup_request = (userId, password) => {
 		userId: userId,
 		password: EncryptUtil.encrypt(password, userId),
 	};
-	return WebRequestUtil.postJson(url, signup_response, body);
+	return WebRequestUtil.postJson(url, signup_response, null, body);
 };
 
 const signup_response = (json) => {
