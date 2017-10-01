@@ -3,7 +3,7 @@
 * Email: nayunhwan.dev@mgail.com
 */
 
-import { LOGIN } from '../ActionCreators/LoginActionCreator';
+import { SIGNIN } from '../ActionCreators/SigninActionCreator';
 import { SIGNUP } from '../ActionCreators/SignupActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
@@ -15,15 +15,23 @@ const initialState = {
 	boxoffices: null,
 	searchedMovies: null,
 	searchedList: null,
-	loginResult: null,
+	signinResult: null,
 	signupResult: null,
 };
 
 const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case LOGIN:
+		case AUTHENTICATION:
 			return Object.assign({}, state, {
-				loginResult: action.loginResult,
+				isLogin: action.authResult.result,
+				user: action.authResult.data,
+			});
+		case SIGNIN:
+			localStorage.setItem('token', action.signinResult.token);
+			console.log('localStorage', localStorage.getItem('token'));
+			console.log(action.signinResult.token);
+			return Object.assign({}, state, {
+				signinResult: action.signinResult,
 			});
 		case SIGNUP:
 			return Object.assign({}, state, {
