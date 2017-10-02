@@ -96,7 +96,7 @@ class MainPage extends Component {
 				</Navigation>
 				<MainSlider
 					backdrop={this.state.backdrop}
-					item={this.state.selected}
+					movie={this.state.selected}
 				/>
 				<ol>
 					{
