@@ -2,21 +2,55 @@
 // If you want to make other Component, Copy and Refactor this Component.
 
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Button, Header } from 'semantic-ui-react';
 
-const defaultProps = {
-	backdrop: 'Ytv7P13rbwQ3mLpCAY8lBTqI5s.jpg',
-};
+import { connect } from 'react-redux';
+
+import * as CommentActionCreator from '../../ActionCreators/CommentActionCreator';
+
+const defaultProps = {};
 const propTypes = {};
+
+const mapStateToProps = state => {
+	return {
+		isLogin: state.authReducer.isLogin,
+		user: state.authReducer.user,
+		commentsList: state.movieReducer.commentsList,
+	};
+};
 
 class MainSlider extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			comment: '',
+		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { movie } = nextProps;
+		if (this.props.movie !== movie) {
+			this.props.dispatch(CommentActionCreator.getMovieCommentList(movie.id));
+		}
+	}
+
+	handleSubmitReviewButtonClick() {
+		const { user, movie } = this.props;
+		console.log(user);
+		console.log(movie);
+		this.props.dispatch(CommentActionCreator.updateMovieComment(user._id, movie.id, this.state.comment));
+	}
+
+	handleReivewTextAreaChange(e) {
+		console.log(e.target.value);
+		this.setState({
+			comment: e.target.value,
+		});
 	}
 
 	render() {
-		const { item } = this.props;
-		if (!item) {
+		const { movie } = this.props;
+		if (!movie) {
 			return (
 				<div className="mainSlider"/>
 			);
@@ -25,7 +59,7 @@ class MainSlider extends Component {
 			<div className="mainSlider">
 				<div className="mainSlider__bg"
 					style={{
-						backgroundImage: `url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${item.backdrop_path})`,
+						backgroundImage: `url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${movie.backdrop_path})`,
 					}}
 				/>
 				<div className="mainSlider__body">
@@ -33,7 +67,7 @@ class MainSlider extends Component {
 						<div className="mainSlider__body__content__left">
 							<img
 								className="mainSlider__body__content__left__poster"
-								src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${item.poster_path}`}
+								src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`}
 							/>
 						</div>
 						<div className="mainSlider__body__content__right">
@@ -42,15 +76,26 @@ class MainSlider extends Component {
 								className="mainSlider__body__content__right__title"
 								size='huge'
 							>
-								{item.title.trim()}
+								{movie.title.trim()}
 								<Header.Subheader
 									className="mainSlider__body__content__right__title__subtitle"
 								>
-									{item.original_title.trim()} | {item.release_date.slice(0, 4)}
+									{movie.original_title.trim()} | {movie.release_date.slice(0, 4)}
 								</Header.Subheader>
 							</Header>
 							<div className="mainSlider__body__content__right__overview">
-								{item.overview.trim()}
+								{movie.overview.trim()}
+							</div>
+							<div className="mainSlider__body__content__right__riview">
+								<textarea
+									value={this.state.comment}
+									onChange={e => this.handleReivewTextAreaChange(e)}
+								>
+								</textarea>
+								<Button
+									onClick={() => this.handleSubmitReviewButtonClick()}
+									>Click Here
+								</Button>
 							</div>
 						</div>
 					</div>
@@ -63,4 +108,4 @@ class MainSlider extends Component {
 MainSlider.defaultProps = defaultProps;
 MainSlider.propTypes = propTypes;
 
-export default MainSlider;
+export default MainSlider = connect(mapStateToProps)(MainSlider);
