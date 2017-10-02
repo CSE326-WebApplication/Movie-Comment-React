@@ -3,9 +3,8 @@
 * Email: nayunhwan.dev@mgail.com
 */
 
-import { AUTHENTICATION, LOGOUT } from '../ActionCreators/AuthActionCreator';
-import { SIGNIN } from '../ActionCreators/SigninActionCreator';
-import { SIGNUP } from '../ActionCreators/SignupActionCreator';
+import { AUTHENTICATION, SIGNIN, SIGNUP, LOGOUT } from '../ActionCreators/AuthActionCreator';
+import { UPDATE_MOVIE_COMMENT, GET_MOVIE_COMMENT_LIST } from '../ActionCreators/CommentActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
 import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
@@ -20,14 +19,15 @@ const initialState = {
 	searchedList: null,
 	signinResult: null,
 	signupResult: null,
+	commentsList: null,
 };
 
-const movieReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case AUTHENTICATION:
 			return Object.assign({}, state, {
-				isLogin: action.authResult.result,
-				user: action.authResult.data,
+				isLogin: action.result.signinResult,
+				user: action.result.data,
 			});
 		case LOGOUT:
 			return Object.assign({}, state, {
@@ -36,7 +36,38 @@ const movieReducer = (state = initialState, action) => {
 		case SIGNIN:
 			localStorage.setItem('token', action.signinResult.token);
 			console.log('localStorage', localStorage.getItem('token'));
-			console.log(action.signinResult.token);
+			return Object.assign({}, state, {
+				signinResult: action.signinResult,
+			});
+		case SIGNUP:
+			return Object.assign({}, state, {
+				signupResult: action.signupResult,
+			});
+		default:
+			return state;
+	}
+};
+
+const movieReducer = (state = initialState, action) => {
+	switch (action.type) {
+		case AUTHENTICATION:
+			return Object.assign({}, state, {
+				isLogin: action.result.result,
+				user: action.result.data,
+			});
+		case UPDATE_MOVIE_COMMENT:
+			return ({});
+		case GET_MOVIE_COMMENT_LIST:
+			return Object.assign({}, state, {
+				commentsList: action.result,
+			});
+		case LOGOUT:
+			return Object.assign({}, state, {
+				isLogin: false,
+			});
+		case SIGNIN:
+			localStorage.setItem('token', action.signinResult.token);
+			console.log('localStorage', localStorage.getItem('token'));
 			return Object.assign({}, state, {
 				signinResult: action.signinResult,
 			});
@@ -61,5 +92,5 @@ const movieReducer = (state = initialState, action) => {
 	}
 };
 
-const Reducer = combineReducers({ movieReducer });
+const Reducer = combineReducers({ authReducer, movieReducer });
 export default Reducer;

@@ -10,15 +10,14 @@ import { connect } from 'react-redux';
 import { Button, Input } from 'semantic-ui-react';
 import { Navigation } from '../../Components';
 
-import * as SigninActionCreator from '../../ActionCreators/SigninActionCreator';
-import * as SignupActionCreator from '../../ActionCreators/SignupActionCreator';
+import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
 
 const defaultProps = {};
 const propTypes = {};
 
 const mapStateToProps = state => {
 	return {
-		isLogin: state.movieReducer.isLogin,
+		isLogin: state.authReducer.isLogin,
 		boxoffices: state.movieReducer.boxoffices,
 		searchedMovies: state.movieReducer.searchedMovies,
 		searchedList: state.movieReducer.searchedList,
@@ -39,12 +38,12 @@ class LoginPage extends Component {
 
 	handleLoginButtonClick() {
 		const { id, pw } = this.state;
-		this.props.dispatch(SigninActionCreator.signin(id, pw));
+		this.props.dispatch(AuthActionCreator.signin(id, pw));
 	}
 
 	handleSignupButtonClick() {
 		const { id, pw } = this.state;
-		this.props.dispatch(SignupActionCreator.signup(id, pw));
+		this.props.dispatch(AuthActionCreator.signup(id, pw));
 	}
 
 	handleInputChange(event, data, type) {
