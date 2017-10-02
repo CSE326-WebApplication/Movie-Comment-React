@@ -7,7 +7,6 @@ import * as WebRequestUtil from '../Utils/WebRequestUtil';
 import * as EncryptUtil from '../Utils/EncryptUtil';
 
 export const AUTHENTICATION = 'AUTHENTICATION';
-export const LOGOUT = 'LOGOUT';
 
 export const auth = (token) => {
 	return auth_request(token);
