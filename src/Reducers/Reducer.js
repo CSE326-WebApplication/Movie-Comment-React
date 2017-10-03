@@ -10,19 +10,22 @@ import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator
 import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
 import { combineReducers } from 'redux';
 
-const initialState = {
-	text: 'initial State',
+const authState = {
 	isLogin: false,
 	user: null,
+	signinResult: null,
+	signupResult: null,
+};
+
+const initialState = {
+	text: 'initial State',
 	boxoffices: null,
 	searchedMovies: null,
 	searchedList: null,
-	signinResult: null,
-	signupResult: null,
 	commentsList: null,
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = authState, action) => {
 	switch (action.type) {
 		case AUTHENTICATION:
 			return Object.assign({}, state, {
@@ -35,7 +38,6 @@ const authReducer = (state = initialState, action) => {
 			});
 		case SIGNIN:
 			localStorage.setItem('token', action.signinResult.token);
-			console.log('localStorage', localStorage.getItem('token'));
 			return Object.assign({}, state, {
 				signinResult: action.signinResult,
 			});
@@ -50,30 +52,11 @@ const authReducer = (state = initialState, action) => {
 
 const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case AUTHENTICATION:
-			return Object.assign({}, state, {
-				isLogin: action.result.result,
-				user: action.result.data,
-			});
 		case UPDATE_MOVIE_COMMENT:
-			return ({});
+			return Object.assign({}, state);
 		case GET_MOVIE_COMMENT_LIST:
 			return Object.assign({}, state, {
-				commentsList: action.result,
-			});
-		case LOGOUT:
-			return Object.assign({}, state, {
-				isLogin: false,
-			});
-		case SIGNIN:
-			localStorage.setItem('token', action.signinResult.token);
-			console.log('localStorage', localStorage.getItem('token'));
-			return Object.assign({}, state, {
-				signinResult: action.signinResult,
-			});
-		case SIGNUP:
-			return Object.assign({}, state, {
-				signupResult: action.signupResult,
+				commentsList: action.result.data,
 			});
 		case GET_BOXOFFICES:
 			return Object.assign({}, state, {

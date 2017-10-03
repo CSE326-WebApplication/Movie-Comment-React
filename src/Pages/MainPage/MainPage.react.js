@@ -4,11 +4,11 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Search, Loader } from 'semantic-ui-react';
+import { Button, Card, Search, Loader } from 'semantic-ui-react';
 
 import { MainSlider, Navigation, SearchResultRenderer } from '../../Components';
 
-import * as MovieActionCreator from '../../ActionCreators/MovieActionCreator';
+import * as CommentActionCreator from '../../ActionCreators/CommentActionCreator';
 import * as NaverMovieActionCreator from '../../ActionCreators/NaverMovieActionCreator';
 import * as TMDBActionCreator from '../../ActionCreators/TMDBActionCreator';
 
@@ -22,6 +22,7 @@ const mapStateToProps = state => {
 		boxoffices: state.movieReducer.boxoffices,
 		searchedMovies: state.movieReducer.searchedMovies,
 		searchedList: state.movieReducer.searchedList,
+		commentsList: state.movieReducer.commentsList,
 	};
 };
 
@@ -30,22 +31,17 @@ class MainPage extends Component {
 		super(props);
 
 		this.state = {
-			selected: null,
+			selectedMovie: null,
 		};
 	}
 
-	componentDidMount() {
-		// this.props.dispatch(MovieActionCreator.getBoxoffices());
-		// this.props.dispatch(NaverMovieActionCreator.getMovieInformation('it'));
-	}
-
 	componentWillReceiveProps(nextProps) {
-		const { boxoffices } = this.props;
-
-		if (boxoffices !== nextProps.boxoffices) {
-			const movieNm = nextProps.boxoffices.boxOfficeResult.dailyBoxOfficeList[0].movieNm;
-			this.props.dispatch(NaverMovieActionCreator.getMovieInformation(movieNm));
-		}
+		// const { boxoffices } = this.props;
+		//
+		// if (boxoffices !== nextProps.boxoffices) {
+		// 	const movieNm = nextProps.boxoffices.boxOfficeResult.dailyBoxOfficeList[0].movieNm;
+		// 	this.props.dispatch(NaverMovieActionCreator.getMovieInformation(movieNm));
+		// }
 	}
 
 	resetComponent() {
@@ -60,7 +56,9 @@ class MainPage extends Component {
 			movieId: result.id,
 			value: result.title,
 			backdrop: result.backdrop_path,
-			selected: result,
+			selectedMovie: result,
+		}, () => {
+			this.props.dispatch(CommentActionCreator.getMovieCommentList(this.state.selectedMovie.id));
 		});
 	}
 
@@ -96,23 +94,36 @@ class MainPage extends Component {
 				</Navigation>
 				<MainSlider
 					backdrop={this.state.backdrop}
-					movie={this.state.selected}
+					movie={this.state.selectedMovie}
 				/>
-				<ol>
-					{
-						boxoffices !== null ? boxoffices.boxOfficeResult.dailyBoxOfficeList.map((item, i) => {
-							return (
-								<li key={i}>{item.movieNm}</li>
-							);
-						})
-						:(<Loader inverted>Loading</Loader>)
-					}
-				</ol>
 				{
 					this.props.information && (<img src={this.props.information.items[0].image}/>)
 				}
 				<Loader inverted>Loading</Loader>
 				<Loader>Loading</Loader>
+				<div>
+					{
+						this.props.commentsList && this.props.commentsList.map((item, i) => {
+							return (
+								<Card key={i}>
+									<Card.Content>
+										<Card.Header>
+											{item.username}
+										</Card.Header>
+										<Card.Meta>
+											Friends of Elliot
+										</Card.Meta>
+										<Card.Description>
+											{item.text}
+										</Card.Description>
+									</Card.Content>
+								</Card>
+							);
+						})
+					}
+				</div>
+
+
 			</div>
 		);
 	}

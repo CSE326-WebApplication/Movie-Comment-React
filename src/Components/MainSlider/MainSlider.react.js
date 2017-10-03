@@ -23,28 +23,18 @@ class MainSlider extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			comment: '',
+			commentValue: '',
 		};
-	}
-
-	componentWillReceiveProps(nextProps) {
-		const { movie } = nextProps;
-		if (this.props.movie !== movie) {
-			this.props.dispatch(CommentActionCreator.getMovieCommentList(movie.id));
-		}
 	}
 
 	handleSubmitReviewButtonClick() {
 		const { user, movie } = this.props;
-		console.log(user);
-		console.log(movie);
-		this.props.dispatch(CommentActionCreator.updateMovieComment(user._id, movie.id, this.state.comment));
+		this.props.dispatch(CommentActionCreator.updateMovieComment(user._id, movie.id, this.state.commentValue));
 	}
 
 	handleReivewTextAreaChange(e) {
-		console.log(e.target.value);
 		this.setState({
-			comment: e.target.value,
+			commentValue: e.target.value,
 		});
 	}
 
@@ -88,7 +78,7 @@ class MainSlider extends Component {
 							</div>
 							<div className="mainSlider__body__content__right__riview">
 								<textarea
-									value={this.state.comment}
+									value={this.state.commentValue}
 									onChange={e => this.handleReivewTextAreaChange(e)}
 								>
 								</textarea>
