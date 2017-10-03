@@ -29,7 +29,7 @@ class MainSlider extends Component {
 
 	handleSubmitReviewButtonClick() {
 		const { user, movie } = this.props;
-		this.props.dispatch(CommentActionCreator.createCommnet(user._id, movie.id, this.state.commentValue));
+		this.props.dispatch(CommentActionCreator.createComment(user._id, movie.id, this.state.commentValue));
 	}
 
 	handleReivewTextAreaChange(e) {
