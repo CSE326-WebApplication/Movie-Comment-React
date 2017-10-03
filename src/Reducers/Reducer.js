@@ -4,7 +4,7 @@
 */
 
 import { AUTHENTICATION, SIGNIN, SIGNUP, LOGOUT } from '../ActionCreators/AuthActionCreator';
-import { UPDATE_MOVIE_COMMENT, GET_MOVIE_COMMENT_LIST } from '../ActionCreators/CommentActionCreator';
+import { CREATE_COMMENT, GET_MOVIE_COMMENT_LIST } from '../ActionCreators/CommentActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
 import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
@@ -52,7 +52,7 @@ const authReducer = (state = authState, action) => {
 
 const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case UPDATE_MOVIE_COMMENT:
+		case CREATE_COMMENT:
 			return Object.assign({}, state);
 		case GET_MOVIE_COMMENT_LIST:
 			return Object.assign({}, state, {

@@ -5,27 +5,27 @@
 
 import * as WebRequestUtil from '../Utils/WebRequestUtil';
 
-export const UPDATE_MOVIE_COMMENT = 'UPDATE_MOVIE_COMMENT';
+export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const GET_MOVIE_COMMENT_LIST = 'GET_MOVIE_COMMENT_LIST';
 
 // Search a movie comment
 
 // Update a movie comment searched by User's UID and Movie ID
 
-export const updateMovieComment = (uid, movieId, text) => {
-	return updateMovieComment_request(uid, movieId, text);
+export const createComment = (uid, movieId, text) => {
+	return createComment_request(uid, movieId, text);
 };
 
-const updateMovieComment_request = (uid, movieId, text) => {
-	const url = 'api/Comment/updateComment/';
+const createComment_request = (uid, movieId, text) => {
+	const url = 'api/Comment/createComment/';
 	const headers = { uid };
 	const body = { movieId, text };
-	return WebRequestUtil.postJson(url, updateMovieComment_response, headers, body);
+	return WebRequestUtil.postJson(url, createComment_response, headers, body);
 };
 
-const updateMovieComment_response = (json) => {
+const createComment_response = (json) => {
 	return {
-		type: UPDATE_MOVIE_COMMENT,
+		type: CREATE_COMMENT,
 		result: json,
 	};
 };
