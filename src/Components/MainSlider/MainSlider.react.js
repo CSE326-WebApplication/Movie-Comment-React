@@ -38,15 +38,32 @@ class MainSlider extends Component {
 		});
 	}
 
+	renderReviewComment() {
+		return (
+			<div className="mainSlider__body__content__right__review">
+				<textarea
+					value={this.state.commentValue}
+					onChange={e => this.handleReivewTextAreaChange(e)}
+				>
+				</textarea>
+				<Button
+					onClick={() => this.handleSubmitReviewButtonClick()}
+				>
+					Click Here
+				</Button>
+			</div>
+		);
+	}
+
 	render() {
-		const { movie } = this.props;
+		const { isLogin, movie } = this.props;
 		if (!movie) {
 			return (
 				<div className="mainSlider"/>
 			);
 		}
 		return (
-			<div className="mainSlider">
+			<div className="mainSlider clear">
 				<div className="mainSlider__bg"
 					style={{
 						backgroundImage: `url(https://image.tmdb.org/t/p/w1400_and_h450_bestv2/${movie.backdrop_path})`,
@@ -76,17 +93,7 @@ class MainSlider extends Component {
 							<div className="mainSlider__body__content__right__overview">
 								{movie.overview.trim()}
 							</div>
-							<div className="mainSlider__body__content__right__riview">
-								<textarea
-									value={this.state.commentValue}
-									onChange={e => this.handleReivewTextAreaChange(e)}
-								>
-								</textarea>
-								<Button
-									onClick={() => this.handleSubmitReviewButtonClick()}
-									>Click Here
-								</Button>
-							</div>
+							{ isLogin && this.renderReviewComment() }
 						</div>
 					</div>
 				</div>

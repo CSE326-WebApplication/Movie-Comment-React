@@ -15,7 +15,6 @@ class Navigation extends Component {
 	}
 
 	handleLogoutButtonClick() {
-		console.log('logout');
 		localStorage.removeItem('token');
 		history.push('/');
 	}
@@ -25,11 +24,11 @@ class Navigation extends Component {
 		if (isLogin) {
 			// When it is logged in
 			return (
-				<ul className="navigation__right__items">
-					<li className="navigation__right__items__item">
+				<ul className="navigation__top__right__items">
+					<li className="navigation__top__right__items__item">
 						{ user.username }
 					</li>
-					<li className="navigation__right__items__item">
+					<li className="navigation__top__right__items__item">
 						<Link to="/" onClick={ () => this.handleLogoutButtonClick() }>Logout</Link>
 					</li>
 				</ul>
@@ -37,11 +36,11 @@ class Navigation extends Component {
 		} else {
 			// When it is logged out
 			return (
-				<ul className="navigation__right__items">
-					<li className="navigation__right__items__item">
+				<ul className="navigation__top__right__items">
+					<li className="navigation__top__right__items__item">
 						<Link to="/signup">SignUp</Link>
 					</li>
-					<li className="navigation__right__items__item">
+					<li className="navigation__top__right__items__item">
 						<Link to="/signin">SignIn</Link>
 					</li>
 				</ul>
@@ -52,13 +51,13 @@ class Navigation extends Component {
 	render() {
 		return (
 			<div className="navigation">
-				<div className="clear">
-					<div className="navigation__left">
-						<div className="navigation__left__logo">
-							<Link to="/">MovieComment</Link>
+				<div className="navigation__top clear">
+					<div className="navigation__top__left">
+						<div className="navigation__top__left__logo">
+							<Link to="/">Movie Comment</Link>
 						</div>
 					</div>
-					<div className="navigation__right">
+					<div className="navigation__top__right">
 						{ this.renderRightItems() }
 					</div>
 				</div>

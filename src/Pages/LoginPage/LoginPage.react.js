@@ -7,8 +7,9 @@ import history from '../../history';
 
 import { connect } from 'react-redux';
 
-import { Button, Input } from 'semantic-ui-react';
+import { Button, Input, Header } from 'semantic-ui-react';
 import { Navigation } from '../../Components';
+// import bgImage from '../../../Static/Images/theater.jpg';
 
 import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
 
@@ -64,8 +65,16 @@ class LoginPage extends Component {
 			<div className="loginPage">
 				<Navigation/>
 				<div className="loginPage__body">
+					<Header
+						as='h2'
+						className="loginPage__body__header"
+						content='SignIn'
+						subheader='당신을 위한 영화 평점 서비스에 로그인해주세요.'
+					/>
 					<div className="loginPage__body__form">
 						<Input
+							icon='user'
+							iconPosition='left'
 							placeholder='ID'
 							size='large'
 							fluid={true}
@@ -74,10 +83,12 @@ class LoginPage extends Component {
 							}
 						/>
 						<Input
+							icon='protect'
+							iconPosition='left'
 							placeholder='Password'
 							size='large'
 							fluid={true}
-							type="password"
+							type='password'
 							onChange={
 								(event, data) => this.handleInputChange(event, data, 'PW')
 							}

@@ -9,8 +9,12 @@
     background: $color-blue-white;
     padding: 2rem 0;
 
+    &__header {
+      text-align: center;
+    }
+
     &__form {
-      width: 50%;
+      width: 500px;
 
       &__footer {
         margin: 1rem 0;
