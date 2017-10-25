@@ -9,8 +9,10 @@ import { LoginPage, MainPage } from './Pages/';
 
 import * as AuthActionCreator from './ActionCreators/AuthActionCreator';
 
-const mapStateToProps = () => {
-	return {};
+const mapStateToProps = state => {
+	return {
+		isExpired: state.authReducer.isExpired,
+	};
 };
 
 class App extends Component {
@@ -23,6 +25,13 @@ class App extends Component {
 		const token = localStorage.getItem('token');
 		if (token) {
 			this.props.dispatch(AuthActionCreator.auth(token));
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		// Remove Token when the token is expired.
+		if (nextProps.isExpired) {
+			localStorage.removeItem('token');
 		}
 	}
 

@@ -12,6 +12,7 @@ import { combineReducers } from 'redux';
 
 const authState = {
 	isLogin: false,
+	isExpired: false,
 	user: null,
 	signinResult: null,
 	signupResult: null,
@@ -28,6 +29,13 @@ const initialState = {
 const authReducer = (state = authState, action) => {
 	switch (action.type) {
 		case AUTHENTICATION:
+			// When the JWT is expired
+			if (action.result.expiredAt) {
+				return Object.assign({}, state, {
+					isExpired: true,
+				});
+			}
+			// When success the authentication
 			return Object.assign({}, state, {
 				isLogin: action.result.signinResult,
 				user: action.result.data,
