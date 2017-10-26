@@ -45,23 +45,42 @@ class MainSlider extends Component {
 	}
 
 	renderMovieScore() {
-		const { movieScore } = this.props;
+		const { movieScore, movie } = this.props;
 
 		return (
-			<div className="mainSlider__body__content__right__score">
-				<h2 className="mainSlider__body__content__right__score__header">
-					영화 평점
-				</h2>
-				<div className="mainSlider__body__content__right__score__body">
-					{
-						movieScore.commentCount !== 0 ?
-						movieScore.avgScore.toFixed(2) :
-						'None'
-					}
+			<div className="mainSlider__body__content__right__section">
+				<div className="mainSlider__body__content__right__section__item">
+					<h2 className="mainSlider__body__content__right__section__item__header">
+						평론가 평점
+					</h2>
+					<div className="mainSlider__body__content__right__section__item__body">
+						{ movie.vote_average * 10 }
+					</div>
+				</div>
+				<div className="mainSlider__body__content__right__section__item">
+					<h2 className="mainSlider__body__content__right__section__item__header">
+						영화 평점
+					</h2>
+					<div className="mainSlider__body__content__right__section__item__body">
+						{
+							movieScore.commentCount !== 0 ?
+							movieScore.avgScore.toFixed(2) :
+							'None'
+						}
+					</div>
+				</div>
+				<div className="mainSlider__body__content__right__section__item">
+					<h2 className="mainSlider__body__content__right__section__item__header">
+						코멘트 수
+					</h2>
+					<div className="mainSlider__body__content__right__section__item__body">
+						{ movieScore.commentCount }
+					</div>
 				</div>
 			</div>
 		);
 	}
+
 	renderReviewComment() {
 		return (
 			<div className="mainSlider__body__content__right__review">

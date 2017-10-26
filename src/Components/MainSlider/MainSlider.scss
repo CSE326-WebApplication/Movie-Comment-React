@@ -5,6 +5,7 @@
 
 .mainSlider {
   height: 550px;
+
   &__bg {
     position: absolute;
     width: 100%;
@@ -42,9 +43,8 @@
     &__content {
       display: flex;
       flex-direction: row;
-      align-items: center;
       justify-content: center;
-      width: 70%;
+      width: 1000px;
 
       &__left {
         width: 300px;
@@ -78,6 +78,7 @@
 
           overflow: hidden;
           height: 8rem;
+          max-height: 8rem;
           line-height: 1.6rem;
 
           font-size: 1.2rem;
@@ -85,20 +86,25 @@
           margin: 0;
         }
 
-        &__score {
-          margin-top: 2rem;
-          margin-bottom: 1.5rem;
+        &__section {
+          margin-top: .5rem;
+          margin-bottom: 1rem;
 
-          &__header {
-            font-size: 1.5rem;
-            margin-bottom: .5rem;
-          }
+          &__item {
+            display: inline-block;
+            margin-right: 4rem;
 
-          &__body {
-            color: $color-blue;
-            font-size: 3rem;
-            line-height: 3rem;
-            font-weight: bold;
+            &__header {
+              font-size: 1.5rem;
+              margin-bottom: .5rem;
+            }
+
+            &__body {
+              color: $color-blue;
+              font-size: 3rem;
+              line-height: 3rem;
+              font-weight: bold;
+            }
           }
         }
 
@@ -112,10 +118,11 @@
             color: $color-font-black;
             font-weight: bold;
             font-size: 1.2rem;
-            resize: none;
             width: 100%;
+            padding: 1rem;
             border: 0;
             border-radius: .25rem;
+            resize: none;
           }
         }
       }
