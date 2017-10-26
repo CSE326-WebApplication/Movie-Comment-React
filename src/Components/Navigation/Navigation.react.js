@@ -17,6 +17,7 @@ class Navigation extends Component {
 	handleLogoutButtonClick() {
 		localStorage.removeItem('token');
 		history.push('/');
+		this.forceUpdate();
 	}
 
 	renderRightItems() {

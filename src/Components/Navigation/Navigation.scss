@@ -26,6 +26,7 @@
 
     &__right {
       float: right;
+      color: $color-font-black;
 
       &__items {
         list-style: none;
@@ -45,7 +46,6 @@
     }
   }
 
-
   &__body {
     background: $color-dark-white;
     color: $color-font-black;
@@ -59,6 +59,7 @@
     &__search {
       width: 70%;
       margin-top: 2rem;
+      margin: 0 auto;
 
       .input {
         width: 100%;
