@@ -59,11 +59,12 @@
         display: flex;
         flex-direction: column;
         padding-left: 4rem;
-        width: calc(100% - 400px);
+        width: 600px;
 
         &__title {
           font-size: 3rem !important;
           color: $color-font-black !important;
+          text-overflow: ellipsis;
 
           &__subtitle {
             font-size: 1.5rem !important;
