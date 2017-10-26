@@ -3,11 +3,18 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
 import history from '../../history';
+
+import { connect } from 'react-redux';
+
+import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
 
 const defaultProps = {};
 const propTypes = {};
+
+const mapStateToProps = () => {
+	return {};
+};
 
 class Navigation extends Component {
 	constructor(props) {
@@ -16,8 +23,8 @@ class Navigation extends Component {
 
 	handleLogoutButtonClick() {
 		localStorage.removeItem('token');
+		this.props.dispatch(AuthActionCreator.logout());
 		history.push('/');
-		this.forceUpdate();
 	}
 
 	renderRightItems() {
@@ -74,4 +81,4 @@ class Navigation extends Component {
 Navigation.defaultProps = defaultProps;
 Navigation.propTypes = propTypes;
 
-export default Navigation;
+export default Navigation = connect(mapStateToProps)(Navigation);

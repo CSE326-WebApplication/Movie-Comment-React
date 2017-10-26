@@ -38,8 +38,15 @@ class LoginPage extends Component {
 
 	handleLoginButtonClick() {
 		const { id, pw } = this.state;
-		this.props.dispatch(AuthActionCreator.signin(id, pw));
-		history.replace('/');
+		new Promise(resolve => {
+			this.props.dispatch(AuthActionCreator.signin(id, pw, resolve));
+		}).then(() => {
+			const token = localStorage.getItem('token');
+			if (token) {
+				this.props.dispatch(AuthActionCreator.auth(token));
+			}
+			history.replace('/');
+		});
 	}
 
 	handleSignupButtonClick() {
