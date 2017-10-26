@@ -16,6 +16,7 @@ const mapStateToProps = state => {
 		isLogin: state.authReducer.isLogin,
 		user: state.authReducer.user,
 		commentsList: state.movieReducer.commentsList,
+		movieScore: state.movieReducer.movieScore,
 	};
 };
 
@@ -29,7 +30,12 @@ class MainSlider extends Component {
 
 	handleSubmitReviewButtonClick() {
 		const { user, movie } = this.props;
-		this.props.dispatch(CommentActionCreator.createComment(user._id, movie.id, this.state.commentValue));
+		new Promise(resolve => {
+			this.props.dispatch(CommentActionCreator.createComment(user._id, movie.id, this.state.commentValue, resolve));
+		}).then(() => {
+			this.props.dispatch(CommentActionCreator.getMovieCommentList(movie.id));
+			this.props.dispatch(CommentActionCreator.getScore(movie.id));
+		});
 	}
 
 	handleReivewTextAreaChange(e) {
@@ -56,7 +62,7 @@ class MainSlider extends Component {
 	}
 
 	render() {
-		const { isLogin, movie } = this.props;
+		const { isLogin, movie, movieScore } = this.props;
 		if (!movie) {
 			return (
 				<div className="mainSlider"/>
@@ -83,16 +89,19 @@ class MainSlider extends Component {
 								className="mainSlider__body__content__right__title"
 								size='huge'
 							>
-								{movie.title.trim()}
+								{ movie.title.trim() }
 								<Header.Subheader
 									className="mainSlider__body__content__right__title__subtitle"
 								>
-									{movie.original_title.trim()} | {movie.release_date.slice(0, 4)}
+									{ movie.original_title.trim()} | {movie.release_date.slice(0, 4) }
 								</Header.Subheader>
 							</Header>
-							<div className="mainSlider__body__content__right__overview">
-								{movie.overview.trim()}
-							</div>
+							<p className="mainSlider__body__content__right__overview">
+								{ movie.overview.trim() }
+							</p>
+							<p className="mainSlider__body__content__right__score">
+								{ movieScore && movieScore.avgScore.toFixed(2) } 점
+							</p>
 							{ isLogin && this.renderReviewComment() }
 						</div>
 					</div>

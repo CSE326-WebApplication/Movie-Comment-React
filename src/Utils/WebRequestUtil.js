@@ -6,15 +6,18 @@
 import fetch from 'isomorphic-fetch';
 import { ServerEndPoint } from '../Configs/Server';
 
-export const getJson = (url, responseActionCreator, headers) => {
+export const getJson = (url, responseActionCreator, headers, callback) => {
 	return dispatch => {
 		fetch(ServerEndPoint + url, { headers })
 		.then(response => response.json())
-		.then(json => dispatch(responseActionCreator(json)));
+		.then(json => {
+			dispatch(responseActionCreator(json));
+			if (callback) callback();
+		});
 	};
 };
 
-export const postJson = (url, responseActionCreator, headers, body) => {
+export const postJson = (url, responseActionCreator, headers, body, callback) => {
 	return dispatch => {
 		fetch(ServerEndPoint + url, {
 			method: 'POST',
@@ -26,6 +29,9 @@ export const postJson = (url, responseActionCreator, headers, body) => {
 			body: JSON.stringify(body),
 		})
 		.then(response => response.json())
-		.then(json => dispatch(responseActionCreator(json)));
+		.then(json => {
+			dispatch(responseActionCreator(json));
+			if (callback) callback();
+		});
 	};
 };

@@ -59,6 +59,7 @@ class MainPage extends Component {
 			selectedMovie: result,
 		}, () => {
 			this.props.dispatch(CommentActionCreator.getMovieCommentList(this.state.selectedMovie.id));
+			this.props.dispatch(CommentActionCreator.getScore(this.state.selectedMovie.id));
 		});
 	}
 
@@ -111,7 +112,7 @@ class MainPage extends Component {
 											{item.username}
 										</Card.Header>
 										<Card.Meta>
-											Friends of Elliot
+											{item.rating}점
 										</Card.Meta>
 										<Card.Description>
 											{item.text}
@@ -122,8 +123,6 @@ class MainPage extends Component {
 						})
 					}
 				</div>
-
-
 			</div>
 		);
 	}
