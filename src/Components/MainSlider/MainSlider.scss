@@ -35,12 +35,15 @@
     position: absolute;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     width: 100%;
     padding: 3rem;
 
     &__content {
       display: flex;
       flex-direction: row;
+      align-items: center;
+      justify-content: center;
       width: 70%;
 
       &__left {
@@ -48,14 +51,15 @@
 
         &__poster {
           max-width: 300px;
+          border-radius: .5rem;
         }
       }
 
       &__right {
-        // display: flex;
-        // flex-direction: column;
-        padding-left: 3rem;
-        // width: calc(100% - 300px);
+        display: flex;
+        flex-direction: column;
+        padding-left: 4rem;
+        width: calc(100% - 400px);
 
         &__title {
           font-size: 3rem !important;
@@ -68,16 +72,51 @@
         }
 
         &__overview {
+          display:-webkit-box;
+          -webkit-line-clamp:5;
+          -webkit-box-orient:vertical;
+
+          overflow: hidden;
+          height: 8rem;
+          line-height: 1.6rem;
+
           font-size: 1.2rem;
           color: $color-font-black;
           margin: 0;
         }
 
         &__score {
-          display: block;
-          margin: 0;
-          // margin-top: 5rem;
-          font-size: 3rem;
+          margin-top: 2rem;
+          margin-bottom: 1.5rem;
+
+          &__header {
+            font-size: 1.5rem;
+            margin-bottom: .5rem;
+          }
+
+          &__body {
+            color: $color-blue;
+            font-size: 3rem;
+            line-height: 3rem;
+            font-weight: bold;
+          }
+        }
+
+        &__review {
+
+          &__header {
+            font-size: 1.5rem;
+          }
+
+          > textarea {
+            color: $color-font-black;
+            font-weight: bold;
+            font-size: 1.2rem;
+            resize: none;
+            width: 100%;
+            border: 0;
+            border-radius: .25rem;
+          }
         }
       }
     }

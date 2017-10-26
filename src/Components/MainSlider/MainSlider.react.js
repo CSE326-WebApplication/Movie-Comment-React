@@ -44,18 +44,41 @@ class MainSlider extends Component {
 		});
 	}
 
+	renderMovieScore() {
+		const { movieScore } = this.props;
+
+		return (
+			<div className="mainSlider__body__content__right__score">
+				<h2 className="mainSlider__body__content__right__score__header">
+					영화 평점
+				</h2>
+				<div className="mainSlider__body__content__right__score__body">
+					{
+						movieScore.commentCount !== 0 ?
+						movieScore.avgScore.toFixed(2) :
+						'None'
+					}
+				</div>
+			</div>
+		);
+	}
 	renderReviewComment() {
 		return (
 			<div className="mainSlider__body__content__right__review">
+				<h2 className="mainSlider__body__content__right__review__header">
+					댓글
+				</h2>
 				<textarea
 					value={this.state.commentValue}
 					onChange={e => this.handleReivewTextAreaChange(e)}
+					placeholder='이 영화에 대한 생각을 자유롭게 작성해주세요.'
 				>
 				</textarea>
 				<Button
+					primary
 					onClick={() => this.handleSubmitReviewButtonClick()}
 				>
-					Click Here
+					댓글 남기기
 				</Button>
 			</div>
 		);
@@ -99,9 +122,7 @@ class MainSlider extends Component {
 							<p className="mainSlider__body__content__right__overview">
 								{ movie.overview.trim() }
 							</p>
-							<p className="mainSlider__body__content__right__score">
-								{ movieScore && movieScore.avgScore.toFixed(2) } 점
-							</p>
+							{ movieScore && this.renderMovieScore() }
 							{ isLogin && this.renderReviewComment() }
 						</div>
 					</div>
