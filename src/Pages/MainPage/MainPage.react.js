@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, Search, Loader } from 'semantic-ui-react';
+import { Button, Card, Search, Loader, Header } from 'semantic-ui-react';
 
 import { MainSlider, Navigation, SearchResultRenderer } from '../../Components';
 
@@ -76,6 +76,44 @@ class MainPage extends Component {
 		});
 	}
 
+	renderCommentsList() {
+		const { commentsList } = this.props;
+
+		return (
+			<div className="mainPage__commentsList">
+				<Header
+					as='h2'
+					className="mainPage__commentsList__header"
+					content='Comments'
+					subheader='영화에 댓글을 남기면 자동으로 평점을 매겨줍니다.'
+				/>
+
+				<div className="mainPage__commentsList__body">
+					{
+						commentsList && commentsList.map((item, i) => {
+							return (
+								<Card key={i}>
+									<Card.Content>
+										<Card.Header>
+											{item.username}
+										</Card.Header>
+										<Card.Meta>
+											{item.rating}점
+										</Card.Meta>
+										<Card.Description>
+											{item.text}
+										</Card.Description>
+									</Card.Content>
+								</Card>
+							);
+						})
+					}
+				</div>
+
+			</div>
+		);
+	}
+
 	render() {
 		const { boxoffices, searchedList, isLogin, user } = this.props;
 		return (
@@ -98,31 +136,12 @@ class MainPage extends Component {
 					movie={this.state.selectedMovie}
 				/>
 				{
-					this.props.information && (<img src={this.props.information.items[0].image}/>)
+					this.props.information && (
+						<img src={this.props.information.items[0].image}/>
+					)
 				}
-				<Loader inverted>Loading</Loader>
-				<Loader>Loading</Loader>
-				<div>
-					{
-						this.props.commentsList && this.props.commentsList.map((item, i) => {
-							return (
-								<Card key={i}>
-									<Card.Content>
-										<Card.Header>
-											{item.username}
-										</Card.Header>
-										<Card.Meta>
-											{item.rating}점
-										</Card.Meta>
-										<Card.Description>
-											{item.text}
-										</Card.Description>
-									</Card.Content>
-								</Card>
-							);
-						})
-					}
-				</div>
+
+				{ this.props.commentsList && this.renderCommentsList() }
 			</div>
 		);
 	}
