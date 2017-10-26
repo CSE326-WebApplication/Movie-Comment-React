@@ -90,7 +90,13 @@ class MainPage extends Component {
 
 				<div className="mainPage__commentsList__body">
 					{
-						commentsList && commentsList.map((item, i) => {
+						commentsList.length === 0 ?
+						(
+							<p className="mainPage__commentsList__body__empty">
+								영화에 대한 댓글이 없습니다. 처음으로 댓글을 남겨 보세요.
+							</p>
+						) :
+						commentsList.map((item, i) => {
 							return (
 								<Card key={i}>
 									<Card.Content>

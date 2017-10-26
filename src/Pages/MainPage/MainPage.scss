@@ -18,6 +18,14 @@
       margin: 0 auto;
       padding: 0 3rem;
 
+      &__empty {
+        font-size: 2rem;
+        text-align: center;
+        color: $color-font-black;
+        font-weight: bold;
+        margin-top: 2rem !important;
+      }
+
       .card {
         display: inline-block;
         width: auto;
