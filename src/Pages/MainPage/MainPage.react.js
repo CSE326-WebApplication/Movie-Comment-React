@@ -51,7 +51,6 @@ class MainPage extends Component {
 	}
 
 	handleResultSelect(e, { result }) {
-		console.log(result);
 		this.setState({
 			movieId: result.id,
 			value: result.title,
@@ -121,7 +120,8 @@ class MainPage extends Component {
 	}
 
 	render() {
-		const { boxoffices, searchedList, isLogin, user } = this.props;
+		const { boxoffices, searchedList, isLogin, user, commentsList } = this.props;
+		const { backdrop, selectedMovie } = this.state;
 		return (
 			<div className="mainPage">
 				<Navigation isLogin={isLogin} user={user}>
@@ -138,16 +138,15 @@ class MainPage extends Component {
 					/>
 				</Navigation>
 				<MainSlider
-					backdrop={this.state.backdrop}
-					movie={this.state.selectedMovie}
+					backdrop={backdrop}
+					movie={selectedMovie}
 				/>
 				{
 					this.props.information && (
 						<img src={this.props.information.items[0].image}/>
 					)
 				}
-
-				{ this.props.commentsList && this.renderCommentsList() }
+				{ commentsList && selectedMovie && this.renderCommentsList() }
 			</div>
 		);
 	}
