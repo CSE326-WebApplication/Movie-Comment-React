@@ -29,18 +29,17 @@ const auth_response = (json) => {
 };
 
 // Sign In
-
-export const signin = (userId, password) => {
-	return signin_request(userId, password);
+export const signin = (userId, password, callback) => {
+	return signin_request(userId, password, callback);
 };
 
-const signin_request = (userId, password) => {
+const signin_request = (userId, password, callback) => {
 	const url = 'auth/Signin/';
 	const body = {
 		userId: userId,
 		password: EncryptUtil.encrypt(password, userId),
 	};
-	return WebRequestUtil.postJson(url, signin_response, null, body);
+	return WebRequestUtil.postJson(url, signin_response, null, body, callback);
 };
 
 const signin_response = (json) => {
@@ -51,24 +50,30 @@ const signin_response = (json) => {
 };
 
 // Sign Up
-
-export const signup = (userId, password) => {
-	return signup_request(userId, password);
+export const signup = (userId, password, callback) => {
+	return signup_request(userId, password, callback);
 };
 
-const signup_request = (userId, password) => {
+const signup_request = (userId, password, callback) => {
 	const url = 'auth/Signup/';
 	const body = {
 		username: 'test',
 		userId: userId,
 		password: EncryptUtil.encrypt(password, userId),
 	};
-	return WebRequestUtil.postJson(url, signup_response, null, body);
+	return WebRequestUtil.postJson(url, signup_response, null, body, callback);
 };
 
 const signup_response = (json) => {
 	return {
 		type: SIGNUP,
 		signupResult: json,
+	};
+};
+
+// Logout
+export const logout = () => {
+	return {
+		type: LOGOUT,
 	};
 };
