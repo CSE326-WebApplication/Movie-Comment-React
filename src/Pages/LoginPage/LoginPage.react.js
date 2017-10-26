@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 import { Button, Input, Header } from 'semantic-ui-react';
 import { Navigation } from '../../Components';
-// import bgImage from '../../../Static/Images/theater.jpg';
 
 import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
 
@@ -40,6 +39,7 @@ class LoginPage extends Component {
 	handleLoginButtonClick() {
 		const { id, pw } = this.state;
 		this.props.dispatch(AuthActionCreator.signin(id, pw));
+		history.replace('/');
 	}
 
 	handleSignupButtonClick() {
@@ -64,14 +64,20 @@ class LoginPage extends Component {
 		return (
 			<div className="loginPage">
 				<Navigation/>
-				<div className="loginPage__body">
-					<Header
-						as='h2'
-						className="loginPage__body__header"
-						content='SignIn'
-						subheader='당신을 위한 영화 평점 서비스에 로그인해주세요.'
-					/>
+				<div
+					className="loginPage__body"
+					style={{
+						backgroundImage: `url(${require('../../Static/Images/theater.jpg')})`,
+					}}
+				>
+
 					<div className="loginPage__body__form">
+						<Header
+							as='h2'
+							className="loginPage__body__form__header"
+							content='Sign In'
+							subheader='당신을 위한 영화 평점 서비스에 로그인해주세요.'
+						/>
 						<Input
 							icon='user'
 							iconPosition='left'
@@ -99,7 +105,7 @@ class LoginPage extends Component {
 								fluid
 								onClick={() => this.handleLoginButtonClick()}
 							>
-								Login
+								SIGN IN
 							</Button>
 							<Button
 								secondary

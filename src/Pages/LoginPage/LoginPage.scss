@@ -6,15 +6,25 @@
 .loginPage {
 
   &__body {
-    background: $color-blue-white;
-    padding: 2rem 0;
-
-    &__header {
-      text-align: center;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+    background-position: 0 -100px;
 
     &__form {
-      width: 500px;
+      width: 450px;
+      margin-top: 150px;
+
+      &__header {
+        color: $color-blue !important;
+        font-size: 2.5rem !important;
+        text-align: center;
+
+        > .sub {
+          margin-top: .5rem !important;
+        }
+      }
 
       &__footer {
         margin: 1rem 0;
