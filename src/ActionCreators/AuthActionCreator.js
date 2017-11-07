@@ -10,6 +10,7 @@ export const AUTHENTICATION = 'AUTHENTICATION';
 export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
 export const LOGOUT = 'LOGOUT';
+export const CHECK_DUPLICATED_USERID = 'CHECK_DUPLICATED_USERID';
 
 export const auth = (token) => {
 	return auth_request(token);
@@ -75,5 +76,27 @@ const signup_response = (json) => {
 export const logout = () => {
 	return {
 		type: LOGOUT,
+	};
+};
+
+// Check the userId is duplicated
+
+// Sign Up
+export const checkDuplicatedUserId = (userId, callback) => {
+	return checkDuplicatedUserId_request(userId, callback);
+};
+
+const checkDuplicatedUserId_request = (userId, callback) => {
+	const url = 'auth/Signup/checkDuplicatedUserId';
+	const body = {
+		userId: userId,
+	};
+	return WebRequestUtil.postJson(url, checkDuplicatedUserId_response, null, body, callback);
+};
+
+const checkDuplicatedUserId_response = (json) => {
+	return {
+		type: CHECK_DUPLICATED_USERID,
+		result: json,
 	};
 };

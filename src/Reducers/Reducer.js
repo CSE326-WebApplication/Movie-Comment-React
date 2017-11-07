@@ -3,7 +3,7 @@
 * Email: nayunhwan.dev@mgail.com
 */
 
-import { AUTHENTICATION, SIGNIN, SIGNUP, LOGOUT } from '../ActionCreators/AuthActionCreator';
+import { AUTHENTICATION, SIGNIN, SIGNUP, LOGOUT, CHECK_DUPLICATED_USERID } from '../ActionCreators/AuthActionCreator';
 import { CREATE_COMMENT, GET_MOVIE_COMMENT_LIST, GET_SCORE } from '../ActionCreators/CommentActionCreator';
 import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
@@ -13,6 +13,7 @@ import { combineReducers } from 'redux';
 const authState = {
 	isLogin: false,
 	isExpired: false,
+	isUserIdDuplicated: false,
 	user: null,
 	signinResult: null,
 	signupResult: null,
@@ -53,6 +54,10 @@ const authReducer = (state = authState, action) => {
 		case SIGNUP:
 			return Object.assign({}, state, {
 				signupResult: action.signupResult,
+			});
+		case CHECK_DUPLICATED_USERID:
+			return Object.assign({}, state, {
+				isUserIdDuplicated: action.result,
 			});
 		default:
 			return state;
