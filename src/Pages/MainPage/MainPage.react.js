@@ -32,6 +32,7 @@ class MainPage extends Component {
 
 		this.state = {
 			selectedMovie: null,
+			timer: null,
 		};
 	}
 
@@ -63,15 +64,19 @@ class MainPage extends Component {
 	}
 
 	handleSearchChange(e, { value }) {
-		if (this.timer) {
-			clearTimeout(this.timer);
+		if (this.state.timer) {
+			clearTimeout(this.state.timer);
 		}
 
-		this.setState({ isLoading: true, value }, () => {
-			this.timer = setTimeout(() => {
-				if (this.state.value.length < 1) return this.resetComponent();
-				this.props.dispatch(TMDBActionCreator.getSearchedList(this.state.value));
-			}, 500);
+		const timer = setTimeout(() => {
+			if (this.state.value.length < 1) return this.resetComponent();
+			this.props.dispatch(TMDBActionCreator.getSearchedList(this.state.value));
+		}, 500);
+
+		this.setState({
+			isLoading: true,
+			timer: timer,
+			value
 		});
 	}
 
@@ -114,7 +119,6 @@ class MainPage extends Component {
 						})
 					}
 				</div>
-
 			</div>
 		);
 	}
