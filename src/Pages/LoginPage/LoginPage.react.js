@@ -18,9 +18,6 @@ const propTypes = {};
 const mapStateToProps = state => {
 	return {
 		isLogin: state.authReducer.isLogin,
-		boxoffices: state.movieReducer.boxoffices,
-		searchedMovies: state.movieReducer.searchedMovies,
-		searchedList: state.movieReducer.searchedList,
 	};
 };
 
