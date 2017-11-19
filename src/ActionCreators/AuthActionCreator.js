@@ -80,23 +80,11 @@ export const logout = () => {
 };
 
 // Check the userId is duplicated
-
-// Sign Up
 export const checkDuplicatedUserId = (userId, callback) => {
-	return checkDuplicatedUserId_request(userId, callback);
-};
-
-const checkDuplicatedUserId_request = (userId, callback) => {
-	const url = 'auth/Signup/checkDuplicatedUserId';
-	const body = {
-		userId: userId,
-	};
-	return WebRequestUtil.postJson(url, checkDuplicatedUserId_response, null, body, callback);
-};
-
-const checkDuplicatedUserId_response = (json) => {
-	return {
-		type: CHECK_DUPLICATED_USERID,
-		result: json,
-	};
+	return WebRequestUtil.post({
+		url: 'auth/Signup/checkDuplicatedUserId',
+		body: {
+			userId: userId,
+		}
+	}, callback);
 };

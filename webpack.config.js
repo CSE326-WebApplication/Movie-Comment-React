@@ -1,4 +1,4 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
 	entry: './src/index.js',
@@ -34,7 +34,17 @@ module.exports = {
 			{
 				test: /\.(jpe?g|png|gif|svg)$/i,
 				loader: 'file-loader?name=/public/icons/[name].[ext]'
+			},
+			{
+				test: /\.json$/,
+				loader: 'json-loader'
 			}
 		]
-	}
+	},
+
+	plugins: [
+		new webpack.ProvidePlugin({
+			'Promise': 'es6-promise', // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+		})
+	]
 };

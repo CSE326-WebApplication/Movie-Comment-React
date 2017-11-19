@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import history from '../../history';
 
+
 import { connect } from 'react-redux';
 
 import { Button, Form, Input, Header, Message } from 'semantic-ui-react';
@@ -18,7 +19,6 @@ const propTypes = {};
 const mapStateToProps = state => {
 	return {
 		isLogin: state.authReducer.isLogin,
-		isUserIdDuplicated: state.authReducer.isUserIdDuplicated,
 	};
 };
 
@@ -36,6 +36,12 @@ class LoginPage extends Component {
 			history.replace('/');
 		}
 	}
+
+	// checkDuplicatedUserId(id) {
+	// 	return new Promise((resolve, reject) => {
+	//
+	// 	});
+	// }
 
 	handleLoginButtonClick() {
 		const { id, pw } = this.state;
@@ -60,17 +66,24 @@ class LoginPage extends Component {
 			this.setState({
 				username: data.value,
 			});
-		}
-		else if (type === 'ID') {
+		} else if (type === 'ID') {
+			// Initialize timer
 			if (this.state.timer) clearTimeout(this.state.timer);
 			// Check duplicated userId from the server every .5sec
-			const timer = setTimeout(() => {
-				this.props.dispatch(AuthActionCreator.checkDuplicatedUserId(data.value));
-			}, 500);
-
 			this.setState({
 				id: data.value,
-				timer: timer,
+			}, () => {
+				const timer = setTimeout(() => {
+					AuthActionCreator.checkDuplicatedUserId(this.state.id).then(res => {
+						this.setState({
+							isUserIdDuplicated: res.data,
+						});
+					});
+				}, 500);
+
+				this.setState({
+					timer: timer,
+				});
 			});
 		} else if (type === 'PW') {
 			this.setState({
@@ -80,7 +93,7 @@ class LoginPage extends Component {
 	}
 
 	render() {
-		const { isUserIdDuplicated } = this.props;
+		const { isUserIdDuplicated } = this.state;
 		return (
 			<div className="signUpPage">
 				<Navigation/>
