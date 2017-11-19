@@ -65,7 +65,7 @@ class SignUpPage extends Component {
 		if (type === 'USERNAME') {
 			this.setState({
 				username: data.value,
-				validUsername: !!data.value.match(/^[0-9a-zA-Z]{4,16}$/)
+				validUsername: !!data.value.match(/^[0-9a-zA-Z가-힣]{2,16}$/)
 			});
 		} else if (type === 'ID') {
 			// Initialize timer
@@ -105,7 +105,11 @@ class SignUpPage extends Component {
 		} = this.state;
 
 		const enableSubmitButton = validUsername && validId && validPassword && !isUserIdDuplicated;
-		console.log(enableSubmitButton);
+		const errorList = [];
+		if (!validUsername) errorList.push('Username는 숫자, 영어 대소문자 및 한글로 2자~16자로 맞춰주세요.');
+		if (!validId) errorList.push('ID는 숫자, 영어 대소문자 4자~16자로 맞춰주세요.');
+		if (isUserIdDuplicated) errorList.push('ID가 중복됩니다. 다른 ID를 입력하세요.');
+		if (!validPassword) errorList.push('Password는 숫자, 영어 대소문자 및 특수문자 6자~20자로 맞춰주세요');
 
 		return (
 			<div className="signUpPage">
@@ -117,7 +121,7 @@ class SignUpPage extends Component {
 					}}
 				>
 					<Form
-						error={isUserIdDuplicated}
+						error={!enableSubmitButton}
 						className="signUpPage__body__form"
 					>
 						<Header
@@ -146,6 +150,7 @@ class SignUpPage extends Component {
 								(event, data) => this.handleInputChange(event, data, 'ID')
 							}
 						/>
+
 						<Form.Input
 							label="Password"
 							placeholder='Password'
@@ -157,10 +162,12 @@ class SignUpPage extends Component {
 								(event, data) => this.handleInputChange(event, data, 'PW')
 							}
 						/>
+
 						<Message
 							error
-							header='아이디 중복 에러'
-							content='중복된 아이디입니다. 다른 아이디를 입력하세요'
+							header='오류'
+							content='양식에 오류가 있습니다. 모든 양식을 확인하시고 알맞게 작성부탁드립니다.'
+							list={errorList}
 						/>
 						<div className="signUpPage__body__form__footer">
 							<Button
