@@ -51,16 +51,16 @@ const signin_response = (json) => {
 };
 
 // Sign Up
-export const signup = (userId, password, callback) => {
-	return signup_request(userId, password, callback);
+export const signup = (params, callback) => {
+	return signup_request(params, callback);
 };
 
-const signup_request = (userId, password, callback) => {
+const signup_request = (params, callback) => {
 	const url = 'auth/Signup/';
 	const body = {
-		username: 'test',
-		userId: userId,
-		password: EncryptUtil.encrypt(password, userId),
+		username: params.username,
+		userId: params.userId,
+		password: EncryptUtil.encrypt(params.password, params.userId),
 	};
 	return WebRequestUtil.postJson(url, signup_response, null, body, callback);
 };

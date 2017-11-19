@@ -37,16 +37,14 @@ class LoginPage extends Component {
 		}
 	}
 
-	// checkDuplicatedUserId(id) {
-	// 	return new Promise((resolve, reject) => {
-	//
-	// 	});
-	// }
-
 	handleLoginButtonClick() {
-		const { id, pw } = this.state;
+		const { username, id, pw } = this.state;
 		new Promise(resolve => {
-			this.props.dispatch(AuthActionCreator.signin(id, pw, resolve));
+			this.props.dispatch(AuthActionCreator.signup({
+				username: username,
+				userId: id,
+				password: pw,
+			}, resolve));
 		}).then(() => {
 			const token = localStorage.getItem('token');
 			if (token) {
@@ -144,12 +142,13 @@ class LoginPage extends Component {
 						<Message
 							error
 							header='아이디 중복 에러'
-							content='You can only sign up for an account once with a given e-mail address.'
+							content='중복된 아이디입니다. 다른 아이디를 입력하세요'
 						/>
 						<div className="signUpPage__body__form__footer">
 							<Button
 								primary
 								fluid
+								disabled={isUserIdDuplicated}
 								onClick={() => this.handleLoginButtonClick()}
 							>
 								SIGN UP

@@ -46,11 +46,6 @@ class LoginPage extends Component {
 		});
 	}
 
-	handleSignupButtonClick() {
-		const { id, pw } = this.state;
-		this.props.dispatch(AuthActionCreator.signup(id, pw));
-	}
-
 	handleInputChange(event, data, type) {
 		if (type === 'ID') {
 			this.setState({
@@ -64,7 +59,6 @@ class LoginPage extends Component {
 	}
 
 	render() {
-
 		return (
 			<div className="loginPage">
 				<Navigation/>
@@ -110,13 +104,6 @@ class LoginPage extends Component {
 								onClick={() => this.handleLoginButtonClick()}
 							>
 								SIGN IN
-							</Button>
-							<Button
-								secondary
-								fluid
-								onClick={() => this.handleSignupButtonClick()}
-							>
-								Secondary
 							</Button>
 						</div>
 					</div>
