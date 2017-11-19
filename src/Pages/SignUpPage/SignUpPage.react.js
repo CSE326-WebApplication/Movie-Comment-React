@@ -5,10 +5,9 @@
 import React, { Component } from 'react';
 import history from '../../history';
 
-
 import { connect } from 'react-redux';
 
-import { Button, Form, Input, Header, Message } from 'semantic-ui-react';
+import { Button, Form, Header, Message } from 'semantic-ui-react';
 import { Navigation } from '../../Components';
 
 import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
@@ -22,11 +21,14 @@ const mapStateToProps = state => {
 	};
 };
 
-class LoginPage extends Component {
+class SignUpPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			timer: null,
+			validUsername: false,
+			validId: false,
+			validPassword: false,
 		};
 	}
 
@@ -63,10 +65,12 @@ class LoginPage extends Component {
 		if (type === 'USERNAME') {
 			this.setState({
 				username: data.value,
+				validUsername: !!data.value.match(/^[0-9a-zA-Z]{4,16}$/)
 			});
 		} else if (type === 'ID') {
 			// Initialize timer
 			if (this.state.timer) clearTimeout(this.state.timer);
+
 			// Check duplicated userId from the server every .5sec
 			this.setState({
 				id: data.value,
@@ -75,6 +79,7 @@ class LoginPage extends Component {
 					AuthActionCreator.checkDuplicatedUserId(this.state.id).then(res => {
 						this.setState({
 							isUserIdDuplicated: res.data,
+							validId: !!data.value.match(/^[0-9a-zA-Z]{4,16}$/)
 						});
 					});
 				}, 500);
@@ -86,12 +91,22 @@ class LoginPage extends Component {
 		} else if (type === 'PW') {
 			this.setState({
 				pw: data.value,
+				validPassword: !!data.value.match(/^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/)
 			});
 		}
 	}
 
 	render() {
-		const { isUserIdDuplicated } = this.state;
+		const {
+			validUsername,
+			validId,
+			validPassword,
+			isUserIdDuplicated,
+		} = this.state;
+
+		const enableSubmitButton = validUsername && validId && validPassword && !isUserIdDuplicated;
+		console.log(enableSubmitButton);
+
 		return (
 			<div className="signUpPage">
 				<Navigation/>
@@ -116,6 +131,7 @@ class LoginPage extends Component {
 							placeholder='Username'
 							size='large'
 							fluid={true}
+							error={!validUsername}
 							onChange={
 								(event, data) => this.handleInputChange(event, data, 'USERNAME')
 							}
@@ -125,6 +141,7 @@ class LoginPage extends Component {
 							placeholder='ID'
 							size='large'
 							fluid={true}
+							error={!validId || isUserIdDuplicated}
 							onChange={
 								(event, data) => this.handleInputChange(event, data, 'ID')
 							}
@@ -135,6 +152,7 @@ class LoginPage extends Component {
 							size='large'
 							fluid={true}
 							type='password'
+							error={!validPassword}
 							onChange={
 								(event, data) => this.handleInputChange(event, data, 'PW')
 							}
@@ -148,7 +166,7 @@ class LoginPage extends Component {
 							<Button
 								primary
 								fluid
-								disabled={isUserIdDuplicated}
+								disabled={!enableSubmitButton}
 								onClick={() => this.handleLoginButtonClick()}
 							>
 								SIGN UP
@@ -161,7 +179,7 @@ class LoginPage extends Component {
 	}
 }
 
-LoginPage.defaultProps = defaultProps;
-LoginPage.propTypes = propTypes;
+SignUpPage.defaultProps = defaultProps;
+SignUpPage.propTypes = propTypes;
 
-export default LoginPage = connect(mapStateToProps)(LoginPage);
+export default SignUpPage = connect(mapStateToProps)(SignUpPage);
