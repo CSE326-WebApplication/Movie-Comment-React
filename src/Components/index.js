@@ -5,6 +5,7 @@
 
 export DefaultComponent from './_DefaultComponent/DefaultComponent.react';
 
+export BoxOffice from './BoxOffice/BoxOffice.react';
 export MainSlider from './MainSlider/MainSlider.react';
 export Navigation from './Navigation/Navigation.react';
 export SearchResultRenderer from './SearchResultRenderer/SearchResultRenderer.react';
