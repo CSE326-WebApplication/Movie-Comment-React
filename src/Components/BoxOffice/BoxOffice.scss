@@ -4,7 +4,7 @@
 */
 
 .boxOffice {
-  
+
   &__title {
     text-align: center;
     font-weight: bold;
@@ -16,12 +16,18 @@
   &__posters {
     text-align: center;
 
+
     &__item {
       display: inline-block;
       margin: 1rem;
+
       &:nth-child(3)::after {
         content: '';
         display: block;
+      }
+
+      &__posterImg {
+        border-radius: .5rem;
       }
     }
   }
