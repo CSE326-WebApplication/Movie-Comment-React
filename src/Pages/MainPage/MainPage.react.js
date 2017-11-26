@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Search, Loader, Header } from 'semantic-ui-react';
 
-import { BoxOffice, MainSlider, Navigation, SearchResultRenderer } from '../../Components';
+import { BoxOffice, Footer, MainSlider, Navigation, SearchResultRenderer } from '../../Components';
 
 import * as CommentActionCreator from '../../ActionCreators/CommentActionCreator';
 import * as NaverMovieActionCreator from '../../ActionCreators/NaverMovieActionCreator';
@@ -164,6 +164,7 @@ class MainPage extends Component {
 					)
 				}
 				{ commentsList && selectedMovie && this.renderCommentsList() }
+				<Footer/>
 			</div>
 		);
 	}

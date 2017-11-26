@@ -8,7 +8,7 @@ import history from '../../history';
 import { connect } from 'react-redux';
 
 import { Button, Input, Header } from 'semantic-ui-react';
-import { Navigation } from '../../Components';
+import { Footer, Navigation } from '../../Components';
 
 import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
 
@@ -108,6 +108,7 @@ class LoginPage extends Component {
 						</div>
 					</div>
 				</div>
+				<Footer/>
 			</div>
 		);
 	}

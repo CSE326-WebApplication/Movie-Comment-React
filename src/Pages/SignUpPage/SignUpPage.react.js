@@ -8,7 +8,7 @@ import history from '../../history';
 import { connect } from 'react-redux';
 
 import { Button, Form, Header, Message } from 'semantic-ui-react';
-import { Navigation } from '../../Components';
+import { Footer, Navigation } from '../../Components';
 
 import * as AuthActionCreator from '../../ActionCreators/AuthActionCreator';
 
@@ -181,6 +181,7 @@ class SignUpPage extends Component {
 						</div>
 					</Form>
 				</div>
+				<Footer/>
 			</div>
 		);
 	}
