@@ -5,9 +5,8 @@
 
 import { AUTHENTICATION, SIGNIN, SIGNUP, LOGOUT } from '../ActionCreators/AuthActionCreator';
 import { CREATE_COMMENT, GET_MOVIE_COMMENT_LIST, GET_SCORE } from '../ActionCreators/CommentActionCreator';
-import { GET_BOXOFFICES } from '../ActionCreators/MovieActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
-import { GET_SEARCHED_LIST } from '../ActionCreators/TMDBActionCreator';
+import { GET_SEARCHED_LIST, GET_BOXOFFICES } from '../ActionCreators/TMDBActionCreator';
 import { combineReducers } from 'redux';
 
 const authState = {
@@ -73,7 +72,7 @@ const movieReducer = (state = initialState, action) => {
 			});
 		case GET_BOXOFFICES:
 			return Object.assign({}, state, {
-				boxoffices: action.boxoffices,
+				boxoffices: action.result,
 			});
 		case GET_MOVIE_INFORMATION:
 			return Object.assign({}, state, {
