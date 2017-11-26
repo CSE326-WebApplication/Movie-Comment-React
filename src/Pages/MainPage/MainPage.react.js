@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Search, Loader, Header } from 'semantic-ui-react';
 
-import { MainSlider, Navigation, SearchResultRenderer } from '../../Components';
+import { BoxOffice, MainSlider, Navigation, SearchResultRenderer } from '../../Components';
 
 import * as CommentActionCreator from '../../ActionCreators/CommentActionCreator';
 import * as NaverMovieActionCreator from '../../ActionCreators/NaverMovieActionCreator';
@@ -34,6 +34,10 @@ class MainPage extends Component {
 			selectedMovie: null,
 			timer: null,
 		};
+	}
+
+	componentDidMount() {
+		this.props.dispatch(TMDBActionCreator.getBoxoffices());
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -141,10 +145,19 @@ class MainPage extends Component {
 						resultRenderer={item => (<SearchResultRenderer item={item}/>)}
 					/>
 				</Navigation>
-				<MainSlider
-					backdrop={backdrop}
-					movie={selectedMovie}
-				/>
+				{
+					!selectedMovie && (
+						<BoxOffice boxOffices={boxoffices}/>
+					)
+				}
+				{
+					selectedMovie && (
+						<MainSlider
+							backdrop={backdrop}
+							movie={selectedMovie}
+						/>
+					)
+				}
 				{
 					this.props.information && (
 						<img src={this.props.information.items[0].image}/>

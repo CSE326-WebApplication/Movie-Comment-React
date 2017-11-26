@@ -11,10 +11,37 @@ class BoxOffice extends Component {
 		super(props);
 	}
 
-	render() {
+	renderPosterImages(boxOffices) {
 		return (
-			<div>
-        This is Default Component
+			<div className="boxOffice__posters">
+				{
+					boxOffices.results.slice(0, 6).map((movie, i) => {
+						return (
+							<div
+								className="boxOffice__posters__item"
+								key={i}
+							>
+								<img
+									className="boxOffice__posters__item__posterImg"
+									src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`}
+								/>
+							</div>
+						);
+					})
+				}
+			</div>
+		);
+	}
+
+	render() {
+		const { boxOffices } = this.props;
+
+		return (
+			<div className="boxOffice">
+				<div className="boxOffice__title">
+					Today's Box Office
+				</div>
+				{ boxOffices && this.renderPosterImages(boxOffices) }
 			</div>
 		);
 	}

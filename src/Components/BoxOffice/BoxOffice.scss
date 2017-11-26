@@ -2,3 +2,27 @@
 * Author: @nayunhwan (github.com/nayunhwan)
 * Email: nayunhwan.dev@mgail.com
 */
+
+.boxOffice {
+  
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 2rem;
+    margin: 2rem auto;
+  }
+
+  &__posters {
+    text-align: center;
+
+    &__item {
+      display: inline-block;
+      margin: 1rem;
+      &:nth-child(3)::after {
+        content: '';
+        display: block;
+      }
+    }
+  }
+}
