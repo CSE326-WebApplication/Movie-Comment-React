@@ -52,6 +52,7 @@ class MainPage extends Component {
 	resetComponent() {
 		this.setState({
 			searchedMovies: null,
+			selectedMovie: null,
 		});
 	}
 
