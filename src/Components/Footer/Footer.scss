@@ -1,0 +1,15 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+.footer {
+  background: $color-footer-background;
+  color: $color-white;
+  padding: 2rem;
+
+  &__logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+}
