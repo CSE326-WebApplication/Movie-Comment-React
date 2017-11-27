@@ -6,7 +6,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Search, Loader, Header } from 'semantic-ui-react';
 
-import { BoxOffice, Footer, MainSlider, Navigation, SearchResultRenderer } from '../../Components';
+import {
+	BoxOffice,
+	Footer,
+	MainSlider,
+	MovieViewer,
+	Navigation,
+	SearchResultRenderer,
+} from '../../Components';
 
 import * as CommentActionCreator from '../../ActionCreators/CommentActionCreator';
 import * as NaverMovieActionCreator from '../../ActionCreators/NaverMovieActionCreator';
@@ -40,7 +47,7 @@ class MainPage extends Component {
 
 	componentDidMount() {
 		this.props.dispatch(TMDBActionCreator.getBoxoffices());
-		this.props.dispatch(CommentActionCreator.getMoviesSortedByCount());
+		this.props.dispatch(CommentActionCreator.getMoviesSortedByCount(5));
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -154,6 +161,11 @@ class MainPage extends Component {
 						<BoxOffice boxOffices={boxoffices}/>
 					)
 				}
+				<MovieViewer
+					className="test"
+					movies={this.props.moviesSortedByCount}
+					title="가장 댓글이 달린 영화는 무엇일까요?"
+				/>
 				{
 					selectedMovie && (
 						<MainSlider
