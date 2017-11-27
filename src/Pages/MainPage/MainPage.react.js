@@ -48,6 +48,7 @@ class MainPage extends Component {
 	componentDidMount() {
 		this.props.dispatch(TMDBActionCreator.getBoxoffices());
 		this.props.dispatch(CommentActionCreator.getMoviesSortedByCount(5));
+		this.props.dispatch(CommentActionCreator.getMoviesSortedByRating(5));
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -161,11 +162,24 @@ class MainPage extends Component {
 						<BoxOffice boxOffices={boxoffices}/>
 					)
 				}
-				<MovieViewer
-					className="test"
-					movies={this.props.moviesSortedByCount}
-					title="가장 댓글이 달린 영화는 무엇일까요?"
-				/>
+				{
+					!selectedMovie && (
+						<MovieViewer
+							className="movieViewerByCount"
+							movies={this.props.moviesSortedByCount}
+							title="가장 댓글이 많이 달린 영화는 무엇일까요?"
+						/>
+					)
+				}
+				{
+					!selectedMovie && (
+						<MovieViewer
+							className="movieViewerByRating"
+							movies={this.props.moviesSortedByRating}
+							title="가장 평점이 좋은 영화는 무엇일까요?"
+						/>
+					)
+				}
 				{
 					selectedMovie && (
 						<MainSlider
