@@ -4,7 +4,13 @@
 */
 
 import { AUTHENTICATION, SIGNIN, SIGNUP, LOGOUT } from '../ActionCreators/AuthActionCreator';
-import { CREATE_COMMENT, GET_MOVIE_COMMENT_LIST, GET_SCORE } from '../ActionCreators/CommentActionCreator';
+import {
+				CREATE_COMMENT,
+				GET_MOVIE_COMMENT_LIST,
+				GET_SCORE,
+				GET_MOVIES_SORTED_BY_COUNT,
+				GET_MOVIES_SORTED_BY_RATING,
+			} from '../ActionCreators/CommentActionCreator';
 import { GET_MOVIE_INFORMATION } from '../ActionCreators/NaverMovieActionCreator';
 import { GET_SEARCHED_LIST, GET_BOXOFFICES } from '../ActionCreators/TMDBActionCreator';
 import { combineReducers } from 'redux';
@@ -24,6 +30,8 @@ const initialState = {
 	searchedList: null,
 	commentsList: null,
 	movieScore: null,
+	moviesSortedByCount: null,
+	moviesSortedByRating: null,
 };
 
 const authReducer = (state = authState, action) => {
@@ -81,6 +89,14 @@ const movieReducer = (state = initialState, action) => {
 		case GET_SEARCHED_LIST:
 			return Object.assign({}, state, {
 				searchedList: action.searchedList.results,
+			});
+		case GET_MOVIES_SORTED_BY_COUNT:
+			return Object.assign({}, state, {
+				moviesSortedByCount: action.result,
+			});
+		case GET_MOVIES_SORTED_BY_RATING:
+			return Object.assign({}, state, {
+				moviesSortedByRating: action.result,
 			});
 		default:
 			return state;

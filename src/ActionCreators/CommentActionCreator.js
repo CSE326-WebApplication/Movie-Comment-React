@@ -8,6 +8,9 @@ import * as WebRequestUtil from '../Utils/WebRequestUtil';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const GET_MOVIE_COMMENT_LIST = 'GET_MOVIE_COMMENT_LIST';
 export const GET_SCORE = 'GET_SCORE';
+export const GET_MOVIES_SORTED_BY_COUNT = 'GET_MOVIES_SORTED_BY_COUNT';
+export const GET_MOVIES_SORTED_BY_RATING = 'GET_MOVIES_SORTED_BY_RATING';
+
 
 // Search a movie comment
 
@@ -62,6 +65,23 @@ const getScore_request = (movieId) => {
 const getScore_response = (json) => {
 	return {
 		type: GET_SCORE,
+		result: json,
+	};
+};
+
+// Get movies sorted by count of comments
+export const getMoviesSortedByCount = (limit) => {
+	return getMoviesSortedByCount_request(limit);
+};
+
+const getMoviesSortedByCount_request = (limit) => {
+	const url = 'api/Comment/moives/?sortby=comment' + ((limit != null) ? `&limit=${limit}` : '');
+	return WebRequestUtil.getJson(url, getMoviesSortedByCount_response, null);
+};
+
+const getMoviesSortedByCount_response = (json) => {
+	return {
+		type: GET_MOVIES_SORTED_BY_COUNT,
 		result: json,
 	};
 };
