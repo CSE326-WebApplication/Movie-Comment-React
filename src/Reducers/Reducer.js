@@ -92,11 +92,11 @@ const movieReducer = (state = initialState, action) => {
 			});
 		case GET_MOVIES_SORTED_BY_COUNT:
 			return Object.assign({}, state, {
-				moviesSortedByCount: action.result,
+				moviesSortedByCount: action.result.data,
 			});
 		case GET_MOVIES_SORTED_BY_RATING:
 			return Object.assign({}, state, {
-				moviesSortedByRating: action.result,
+				moviesSortedByRating: action.result.data,
 			});
 		default:
 			return state;
