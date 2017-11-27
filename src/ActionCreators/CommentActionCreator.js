@@ -85,3 +85,20 @@ const getMoviesSortedByCount_response = (json) => {
 		result: json,
 	};
 };
+
+// Get movies sorted by rating
+export const getMoviesSortedByRating = (limit) => {
+	return getMoviesSortedByRating_request(limit);
+};
+
+const getMoviesSortedByRating_request = (limit) => {
+	const url = 'api/Comment/moives/?sortby=rating' + ((limit != null) ? `&limit=${limit}` : '');
+	return WebRequestUtil.getJson(url, getMoviesSortedByRating_response, null);
+};
+
+const getMoviesSortedByRating_response = (json) => {
+	return {
+		type: GET_MOVIES_SORTED_BY_RATING,
+		result: json,
+	};
+};
