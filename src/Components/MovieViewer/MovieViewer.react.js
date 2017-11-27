@@ -45,6 +45,14 @@ class MovieViewer extends Component {
 											</span>
 										)
 									}
+									{
+										detail.rating && (
+											<span className="movieViewer__posters__item__img__info">
+												<Icon name="star"/>
+												{ detail.rating.toFixed(2) }
+											</span>
+										)
+									}
 								</div>
 							</div>
 						);
