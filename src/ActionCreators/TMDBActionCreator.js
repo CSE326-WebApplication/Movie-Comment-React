@@ -5,8 +5,16 @@
 
 import * as WebRequestUtil from '../Utils/WebRequestUtil';
 
+export const GET_MOVIE = 'GET_MOVIE';
 export const GET_SEARCHED_LIST = 'GET_SEARCHED_LIST';
 export const GET_BOXOFFICES = 'GET_BOXOFFICES';
+
+// Get infortmation of movie from the TMDB Server
+export const getMovie = (movieId, callback) => {
+	return WebRequestUtil.get({
+		url: `api/TMDB/movie?movie_id=${movieId}`,
+	}, callback);
+};
 
 export const getSearchedList = (query) => {
 	return getSearchedList_request(query);
