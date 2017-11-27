@@ -11,7 +11,7 @@ import * as TMDBActionCreator from '../../ActionCreators/TMDBActionCreator';
 const defaultProps = {};
 const propTypes = {};
 
-class DefaultComponent extends Component {
+class MovieViewer extends Component {
 	constructor(props) {
 		super(props);
 
@@ -109,7 +109,7 @@ class DefaultComponent extends Component {
 	}
 }
 
-DefaultComponent.defaultProps = defaultProps;
-DefaultComponent.propTypes = propTypes;
+MovieViewer.defaultProps = defaultProps;
+MovieViewer.propTypes = propTypes;
 
-export default DefaultComponent;
+export default MovieViewer;
