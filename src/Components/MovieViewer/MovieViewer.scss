@@ -2,3 +2,35 @@
 * Author: @nayunhwan (github.com/nayunhwan)
 * Email: nayunhwan.dev@mgail.com
 */
+
+.movieViewer {
+
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 2rem auto;
+    line-height: 2rem;
+  }
+
+  &__posters {
+    text-align: center;
+
+    &__item {
+      display: inline-block;
+      margin: 1rem;
+
+      &__img {
+        display: inline-block;
+        text-align: right;
+        width: 200px;
+        height: 300px;
+        border-radius: .5rem;
+        padding: 1rem;
+        font-weight: bold;
+        font-size: 1.5rem;
+        color: white;
+      }
+    }
+  }
+}
