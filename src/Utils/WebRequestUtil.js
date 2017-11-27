@@ -9,7 +9,14 @@ import axios from 'axios';
 
 export const getJson = (url, responseActionCreator, headers, callback) => {
 	return dispatch => {
-		fetch(ServerEndPoint + url, { headers })
+		fetch(ServerEndPoint + url, {
+			method: 'GET',
+			headers: {
+				...headers,
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+		})
 		.then(response => response.json())
 		.then(json => {
 			dispatch(responseActionCreator(json));
