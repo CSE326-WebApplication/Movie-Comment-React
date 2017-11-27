@@ -23,6 +23,8 @@ const mapStateToProps = state => {
 		searchedMovies: state.movieReducer.searchedMovies,
 		searchedList: state.movieReducer.searchedList,
 		commentsList: state.movieReducer.commentsList,
+		moviesSortedByCount: state.movieReducer.moviesSortedByCount,
+		moviesSortedByRating: state.movieReducer.moviesSortedByRating,
 	};
 };
 
@@ -38,6 +40,7 @@ class MainPage extends Component {
 
 	componentDidMount() {
 		this.props.dispatch(TMDBActionCreator.getBoxoffices());
+		this.props.dispatch(CommentActionCreator.getMoviesSortedByCount());
 	}
 
 	componentWillReceiveProps(nextProps) {
