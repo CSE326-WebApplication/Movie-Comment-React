@@ -57,7 +57,6 @@ class MovieViewer extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (this.props.movies != nextProps.movies && nextProps.movies) {
 			const movies = nextProps.movies;
-			console.log(movies);
 			movies.forEach(movie => {
 				TMDBActionCreator.getMovie(movie._id).then(res => {
 					const detail = res.data;
