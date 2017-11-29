@@ -17,7 +17,6 @@ class Poster extends Component {
 	}
 
 	handleMouseEnter() {
-		console.log('enter');
 		this.setState({
 			isHover: true,
 		});
@@ -26,18 +25,15 @@ class Poster extends Component {
 	handleMouseLeave() {
 		this.setState({
 			isHover: false,
-		})
+		});
 	}
 
 	render() {
 		const { className, imagePath } = this.props;
-		const { isHover } = this.state;
 		return (
 			<div
 				className={
-					classnames(
-						'posterImage', className,
-					)
+					classnames('posterImage', className)
 				}
 				style={{
 					backgroundImage: `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2/${imagePath})`
