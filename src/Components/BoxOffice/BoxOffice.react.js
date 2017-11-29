@@ -3,6 +3,8 @@
 
 import React, { Component } from 'react';
 
+import { Poster } from '../';
+
 const defaultProps = {};
 const propTypes = {};
 
@@ -21,9 +23,9 @@ class BoxOffice extends Component {
 								className="boxOffice__posters__item"
 								key={i}
 							>
-								<img
+								<Poster
 									className="boxOffice__posters__item__posterImg"
-									src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`}
+									imagePath={movie.poster_path}
 								/>
 							</div>
 						);
@@ -36,10 +38,11 @@ class BoxOffice extends Component {
 							<div
 								className="boxOffice__posters__item"
 								key={i}
+
 							>
-								<img
+								<Poster
 									className="boxOffice__posters__item__posterImg"
-									src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movie.poster_path}`}
+									imagePath={movie.poster_path}
 								/>
 							</div>
 						);
