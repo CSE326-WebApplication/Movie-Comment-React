@@ -10,4 +10,5 @@ export Footer from './Footer/Footer.react';
 export MainSlider from './MainSlider/MainSlider.react';
 export MovieViewer from './MovieViewer/MovieViewer.react';
 export Navigation from './Navigation/Navigation.react';
+export Poster from './Poster/Poster.react';
 export SearchResultRenderer from './SearchResultRenderer/SearchResultRenderer.react';

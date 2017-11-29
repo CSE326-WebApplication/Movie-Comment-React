@@ -1,0 +1,21 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+
+
+.posterImage {
+
+  display: inline-block;
+  width: 300px;
+  height: 450px;
+  cursor: pointer;
+  color: white;
+  transition: .3s;
+
+  &:hover {
+    box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
+    transition: .3s;
+  }
+}
