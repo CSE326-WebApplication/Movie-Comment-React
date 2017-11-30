@@ -44,7 +44,6 @@ class MainPage extends Component {
 	componentDidMount() {
 		if (!this.state.selectedMovie && this.props.params.movieId) {
 			TMDBActionCreator.getMovie(this.props.params.movieId).then(res => {
-				console.log(res.data);
 				this.setState({
 					selectedMovie: res.data,
 				}, () => {
