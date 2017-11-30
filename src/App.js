@@ -5,7 +5,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { connect } from 'react-redux';
 
 // Own Modules
-import { LoginPage, MainPage, SignUpPage } from './Pages/';
+import { LoginPage, MainPage, MoviePage, SignUpPage } from './Pages/';
 
 import * as AuthActionCreator from './ActionCreators/AuthActionCreator';
 
@@ -40,6 +40,9 @@ class App extends Component {
 			<Router history={browserHistory}>
 				<Route path="/">
 					<IndexRoute component={MainPage}/>
+				</Route>
+				<Route path="/movie">
+					<Route path=":movieId" component={MoviePage}/>
 				</Route>
 				<Route path="/signin">
 					<IndexRoute component={LoginPage}/>
