@@ -26,6 +26,7 @@ class BoxOffice extends Component {
 								<Poster
 									className="boxOffice__posters__item__posterImg"
 									imagePath={movie.poster_path}
+									movieId={movie.id}
 								/>
 							</div>
 						);
@@ -43,6 +44,7 @@ class BoxOffice extends Component {
 								<Poster
 									className="boxOffice__posters__item__posterImg"
 									imagePath={movie.poster_path}
+									movieId={movie.id}
 								/>
 							</div>
 						);
