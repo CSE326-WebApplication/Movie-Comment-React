@@ -4,6 +4,8 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
+import history from '../../history';
+
 const defaultProps = {};
 const propTypes = {};
 
@@ -28,6 +30,11 @@ class Poster extends Component {
 		});
 	}
 
+	handleMouseClick() {
+		const { movieId } = this.props;
+		history.push(`/movie/${movieId}`);
+	}
+
 	render() {
 		const { className, imagePath } = this.props;
 		return (
@@ -40,6 +47,7 @@ class Poster extends Component {
 				}}
 				onMouseEnter={() => this.handleMouseEnter()}
 				onMouseLeave={() => this.handleMouseLeave()}
+				onClick={() => this.handleMouseClick()}
 			>
 			</div>
 		);
