@@ -42,7 +42,7 @@ class LoginPage extends Component {
 			if (token) {
 				this.props.dispatch(AuthActionCreator.auth(token));
 			}
-			history.replace('/');
+			history.goBack();
 		});
 	}
 
