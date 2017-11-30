@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Card, Search, Loader, Header } from 'semantic-ui-react';
 
+import history from '../../history';
 import {
 	BoxOffice,
 	Footer,
@@ -51,15 +52,6 @@ class MainPage extends Component {
 		this.props.dispatch(CommentActionCreator.getMoviesSortedByRating(5));
 	}
 
-	componentWillReceiveProps(nextProps) {
-		// const { boxoffices } = this.props;
-		//
-		// if (boxoffices !== nextProps.boxoffices) {
-		// 	const movieNm = nextProps.boxoffices.boxOfficeResult.dailyBoxOfficeList[0].movieNm;
-		// 	this.props.dispatch(NaverMovieActionCreator.getMovieInformation(movieNm));
-		// }
-	}
-
 	resetComponent() {
 		this.setState({
 			searchedMovies: null,
@@ -74,8 +66,7 @@ class MainPage extends Component {
 			backdrop: result.backdrop_path,
 			selectedMovie: result,
 		}, () => {
-			this.props.dispatch(CommentActionCreator.getMovieCommentList(this.state.selectedMovie.id));
-			this.props.dispatch(CommentActionCreator.getScore(this.state.selectedMovie.id));
+			history.push(`/movie/${result.id}`);
 		});
 	}
 
@@ -140,8 +131,8 @@ class MainPage extends Component {
 	}
 
 	render() {
-		const { boxoffices, searchedList, isLogin, user, commentsList } = this.props;
-		const { backdrop, selectedMovie } = this.state;
+		const { boxoffices, searchedList, isLogin, user } = this.props;
+		const { selectedMovie } = this.state;
 		return (
 			<div className="mainPage">
 				<Navigation isLogin={isLogin} user={user}>
@@ -180,20 +171,6 @@ class MainPage extends Component {
 						/>
 					)
 				}
-				{
-					selectedMovie && (
-						<MainSlider
-							backdrop={backdrop}
-							movie={selectedMovie}
-						/>
-					)
-				}
-				{
-					this.props.information && (
-						<img src={this.props.information.items[0].image}/>
-					)
-				}
-				{ commentsList && selectedMovie && this.renderCommentsList() }
 				<Footer/>
 			</div>
 		);
