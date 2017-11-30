@@ -1,0 +1,37 @@
+/*
+* Author: @nayunhwan (github.com/nayunhwan)
+* Email: nayunhwan.dev@mgail.com
+*/
+
+.moviePage {
+
+  &__commentsList {
+    padding: 1rem;
+    text-align: center;
+
+    &__header {
+      font-family: 'Ubuntu', sans-serif !important;
+    }
+
+    &__body {
+      text-align: left;
+      margin: 0 auto;
+      padding: 0 3rem;
+
+      &__empty {
+        font-size: 2rem;
+        text-align: center;
+        color: $color-font-black;
+        font-weight: bold;
+        margin-top: 2rem !important;
+      }
+
+      .card {
+        display: inline-block;
+        width: auto;
+        font-family: 'Ubuntu', sans-serif !important;
+        margin: 1rem;
+      }
+    }
+  }
+}
