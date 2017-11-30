@@ -24,7 +24,6 @@ class Navigation extends Component {
 	handleLogoutButtonClick() {
 		localStorage.removeItem('token');
 		this.props.dispatch(AuthActionCreator.logout());
-		history.push('/');
 	}
 
 	renderRightItems() {
@@ -36,8 +35,8 @@ class Navigation extends Component {
 					<li className="navigation__top__right__items__item">
 						{ user.username }
 					</li>
-					<li className="navigation__top__right__items__item">
-						<Link to="/" onClick={ () => this.handleLogoutButtonClick() }>Logout</Link>
+					<li className="navigation__top__right__items__item logout">
+						<span onClick={ () => this.handleLogoutButtonClick() }>Logout</span>
 					</li>
 				</ul>
 			);

@@ -41,6 +41,11 @@
           &:last-child {
             margin-right: 0;
           }
+
+          &.logout {
+            color: #1e70bf;
+            cursor: pointer;
+          }
         }
       }
     }
