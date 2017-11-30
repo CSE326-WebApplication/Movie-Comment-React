@@ -6,6 +6,8 @@ import classnames from 'classnames';
 
 import { Icon } from 'semantic-ui-react';
 
+import history from '../../history';
+
 import * as TMDBActionCreator from '../../ActionCreators/TMDBActionCreator';
 
 const defaultProps = {};
@@ -18,6 +20,10 @@ class MovieViewer extends Component {
 		this.state = {
 			movieDetails: [],
 		};
+	}
+
+	handlePosterImageClick(movieId) {
+		history.push(`/movie/${movieId}`);
 	}
 
 	renderPosterImages() {
@@ -36,6 +42,7 @@ class MovieViewer extends Component {
 									style={{
 										backgroundImage: `url(https://image.tmdb.org/t/p/w200_and_h300_bestv2/${detail.poster_path})`
 									}}
+									onClick={() => this.handlePosterImageClick(detail.id)}
 								>
 									{
 										detail.count && (
