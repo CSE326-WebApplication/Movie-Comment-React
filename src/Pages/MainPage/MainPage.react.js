@@ -143,7 +143,7 @@ class MainPage extends Component {
 						onResultSelect={(e, result) => this.handleResultSelect(e, result)}
 						onSearchChange={(e, value) => this.handleSearchChange(e, value)}
 						value={this.state.value}
-						placeholder="영화, 감독, 출연진 검색..."
+						placeholder="영화 제목 검색..."
 						results={searchedList}
 						resultRenderer={item => (<SearchResultRenderer item={item}/>)}
 					/>
