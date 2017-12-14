@@ -53,7 +53,9 @@ const authReducer = (state = authState, action) => {
 				isLogin: false,
 			});
 		case SIGNIN:
-			localStorage.setItem('token', action.signinResult.token);
+			if (!!action.signinResult.token) {
+				localStorage.setItem('token', action.signinResult.token);
+			}
 			return Object.assign({}, state, {
 				signinResult: action.signinResult,
 			});

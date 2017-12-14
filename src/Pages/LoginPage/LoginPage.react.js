@@ -18,6 +18,7 @@ const propTypes = {};
 const mapStateToProps = state => {
 	return {
 		isLogin: state.authReducer.isLogin,
+		signinResult: state.authReducer.signinResult,
 	};
 };
 
@@ -38,11 +39,18 @@ class LoginPage extends Component {
 		new Promise(resolve => {
 			this.props.dispatch(AuthActionCreator.signin(id, pw, resolve));
 		}).then(() => {
+			const { signinResult } = this.props;
 			const token = localStorage.getItem('token');
 			if (token) {
 				this.props.dispatch(AuthActionCreator.auth(token));
+				history.goBack();
+			} else {
+				if (signinResult.message.includes("Wrong password")) {
+					alert("비밀번호가 틀렸습니다.");
+				} else if (signinResult.message.includes("Can't find userId")) {
+					alert("일치하는 회원이 없습니다.");
+				}
 			}
-			history.goBack();
 		});
 	}
 
